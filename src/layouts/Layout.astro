@@ -21,31 +21,28 @@ const { title } = Astro.props;
 	</body>
 </html>
 <style is:global>
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
+	@font-face {
+		font-family: 'Lato';
+		src: url('../../public/fonts/Lato/Lato-Regular.ttf');
+		font-weight: normal;
+		font-style: normal;
 	}
-	html {
-		font-family: system-ui, sans-serif;
-		background: #13151a;
-		background-size: 224px;
+	@font-face {
+		font-family: 'Lato';
+		src: url('../../public/fonts/Lato/Lato-Bold.ttf');
+		font-weight: bold;
+		font-style: bold;
 	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
+	@font-face {
+		font-family: 'Cinzel';
+		src: url('../../public/fonts/Cinzel/Cinzel-Regular.ttf');
+		font-weight: normal;
+		font-style: normal;
+	}
+	@font-face {
+		font-family: 'Cinzel';
+		src: url('../../public/fonts/Cinzel/Cinzel-Bold.ttf');
+		font-weight: bold;
+		font-style: bold;
 	}
 </style>
