@@ -8,7 +8,7 @@ const { title, body } = Astro.props;
 ---
 
 <div class="w-full">
-    <h4 class="text-xl sm:text-2xl">{title}</h4>
+    <h4 class="text-xl sm:text-2xl min-h-[3.6rem]">{title}</h4>
     <hr class="w-1/6 mt-4">
     <p class="mt-4">{body}</p>
 </div>
@@ -31,8 +31,6 @@ const { title, body } = Astro.props;
 
     p{
         color: #717A87;
-        font-family: 'Lato';
-        font-weight: normal;
         text-align: left;
     }
 </style>
