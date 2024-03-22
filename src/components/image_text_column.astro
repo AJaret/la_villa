@@ -12,11 +12,11 @@ interface Props {
 const { ImageSrc, ImagePosition, Body, Title, SecondaryText } = Astro.props;
 ---
 
-<div class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4 gap-52 mt-20">
+<div class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4 gap-20 sm:gap-52 mt-20">
     {ImagePosition === 'left' && (
         <div class="md:w-1/3 relative z-10">
             <Image src={ImageSrc} alt="Imagen" class="w-full" />
-            <div class="absolute -bottom-4 -right-10 p-4 z-10" id="bottom-square-left">
+            <div class="absolute bottom-0 sm:-bottom-4 right-0 sm:-right-10 p-4 z-10" id="bottom-square-left">
                 <p class="text-lg">{SecondaryText}</p>
             </div>
         </div>
@@ -41,7 +41,7 @@ const { ImageSrc, ImagePosition, Body, Title, SecondaryText } = Astro.props;
     {ImagePosition === 'right' && (
         <div class="md:w-1/3 relative">
             <Image src={ImageSrc} alt="Imagen" class="w-full" />
-            <div class="absolute -bottom-4 -left-10 p-4 z-10" id="bottom-square-right">
+            <div class="absolute bottom-0 sm:-bottom-4 left-0 sm:-left-10 p-4 z-10" id="bottom-square-right">
                 <p class="text-lg">{SecondaryText}</p>
             </div>
         </div>

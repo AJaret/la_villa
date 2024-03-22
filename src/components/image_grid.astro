@@ -1,0 +1,31 @@
+---
+import { Image } from "astro:assets";
+import Image_1 from "../images/index_grid/1.png";
+import Image_2 from "../images/index_grid/2.png";
+import Image_3 from "../images/index_grid/3.png";
+import Image_4 from "../images/index_grid/4.png";
+---
+
+<section>
+    <div class="grid grid-cols-2 gap-4">
+        <div class="col-span-1 grid grid-cols-1 gap-4">
+            <div class="grid grid-cols-1 gap-4">
+                <div class="col-span-1">
+                    <Image src={Image_1} alt="La villa beach" class="w-full h-auto" />
+                </div>
+                <div class="col-span-1 grid grid-cols-2 gap-4">
+                    <div class="col-span-1">
+                        <Image src={Image_2} alt="La villa beach" class="w-full h-auto" />
+                    </div>
+                    <div class="col-span-1">
+                        <Image src={Image_3} alt="La villa beach" class="w-full h-auto" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-span-1">
+            <Image src={Image_4} alt="La villa beach" class="w-full max-h-max" />
+        </div>
+    </div>    
+</section>

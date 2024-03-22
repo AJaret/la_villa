@@ -1,0 +1,22 @@
+---
+import { Image } from "astro:assets";
+import Beach from "../images/beach.png";
+---
+
+<section class="mt-20">
+    <div class="relative h-2/3">
+        <Image src={Beach} alt="La villa beach" class="w-full h-full object-cover" />
+        <div class="absolute inset-x-0 bottom-0 flex items-center justify-center">
+            <div class="bg-gradient-to-t from-black to-transparent w-full sm:p-4 text-center">
+                <p class="text-white text-xl md:text-3xl p-6 sm:p-32">Escape with friends, create<br>unforgettable memories<br>together.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    section{
+        font-family: 'Cinzel';
+        font-weight: normal;
+    }
+</style>
