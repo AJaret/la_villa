@@ -1,0 +1,227 @@
+---
+import Footer from '../components/footer.astro';
+import SecondaryHeader from '../components/secondary_header.astro';
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+
+import Conchi from '../images/rooms/conchi.png';
+import Jose from '../images/rooms/jose.png';
+import Maya from '../images/rooms/maya.png';
+import Penelope from '../images/rooms/penelope.png';
+import Sea from '../images/rooms/sea.png';
+---
+
+<Layout title="La Villa">
+	<main>
+        <SecondaryHeader BackgroundUrl='src/images/backgrounds/secondary_header.png' />
+        <div class="mt-16">
+			<div class="mt-6 sm:mt-0 flex flex-col md:flex-row items-center" id="conchi">
+				<div class="w-full">
+					<Image src={Conchi} alt="Imagen" class="w-full" />
+				</div>
+				<div class="w-full flex items-center justify-center mt-6 mb-10">
+					<div class="w-4/6 md:w-5/6 xl:w-4/6 text-center">
+						<h4 class="text-xl sm:text-2xl">La Villa Suite Conchi</h4>
+						<p class="text-base mt-3"></p>
+						<div class="flex flex-col gap-2 mt-3">
+							<div class="flex flex-row gap-10">
+								<p class="title">Bathroom</p>
+								<p>1</p>
+							</div>
+							<div class="flex flex-row gap-10">
+								<p class="title">Beds</p>
+								<p>1</p>
+							</div>
+							<div class="flex flex-row gap-10">
+								<p class="title">Guest</p>
+								<p>2</p>
+							</div>
+						</div>
+						<a href='/room/conchi'><button class="p-3">MORE INFO</button></a>
+					</div>
+				</div>
+			</div>
+			<div class="mt-6 sm:mt-0 flex flex-col md:flex-row items-center" id="vista">
+				<div class="w-full flex items-center justify-center mt-6 mb-10">
+					<div class="w-4/6 md:w-5/6 xl:w-4/6 text-center">
+						<h4 class="text-xl sm:text-2xl">La Villa Vista del Mar Suite</h4>
+						<p class="text-base mt-3"></p>
+						<div class="flex flex-col gap-2 mt-3">
+							<div class="flex flex-row gap-10">
+								<p class="title">Bathroom</p>
+								<p>1</p>
+							</div>
+							<div class="flex flex-row gap-10">
+								<p class="title">Beds</p>
+								<p>2</p>
+							</div>
+							<div class="flex flex-row gap-10">
+								<p class="title">Guest</p>
+								<p>3</p>
+							</div>
+						</div>
+						<a href='/room/vista'><button class="p-3">MORE INFO</button></a>
+					</div>
+				</div>
+				<div class="w-full">
+					<Image src={Sea} alt="Imagen" class="w-full" />
+				</div>
+			</div>
+			<div class="mt-6 sm:mt-0" id="maya">
+				<div class="mt-6 sm:mt-0 flex flex-col md:flex-row items-center">
+					<div class="w-full">
+						<Image src={Maya} alt="Imagen" class="w-full" />
+					</div>
+					<div class="w-full flex items-center justify-center mt-6 mb-10">
+						<div class="w-4/6 md:w-5/6 xl:w-4/6 text-center">
+							<h4 class="text-xl sm:text-2xl">La Villa Suite Maya</h4>
+							<p class="text-base mt-3"></p>
+							<div class="flex flex-col gap-2 mt-3">
+								<div class="flex flex-row gap-10">
+									<p class="title">Bathroom</p>
+									<p>1</p>
+								</div>
+								<div class="flex flex-row gap-10">
+									<p class="title">Beds</p>
+									<p>1</p>
+								</div>
+								<div class="flex flex-row gap-10">
+									<p class="title">Guest</p>
+									<p>2</p>
+								</div>
+							</div>
+							<a href='/room/maya'><button class="p-3">MORE INFO</button></a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="mt-6 sm:mt-0" id="penelope">
+				<div class="mt-6 sm:mt-0 flex flex-col md:flex-row items-center">
+					<div class="w-full flex items-center justify-center mt-6 mb-10">
+						<div class="w-4/6 md:w-5/6 xl:w-4/6 text-center">
+							<h4 class="text-xl sm:text-2xl">La Villa Penelope</h4>
+							<p class="text-base mt-3"></p>
+							<div class="flex flex-col gap-2 mt-3">
+								<div class="flex flex-row gap-10">
+									<p class="title">Bathroom</p>
+									<p>1</p>
+								</div>
+								<div class="flex flex-row gap-10">
+									<p class="title">Beds</p>
+									<p>2</p>
+								</div>
+								<div class="flex flex-row gap-10">
+									<p class="title">Guest</p>
+									<p>3</p>
+								</div>
+							</div>
+							<a href='/room/penelope'><button class="p-3">MORE INFO</button></a>
+						</div>
+					</div>
+					<div class="w-full">
+						<Image src={Penelope} alt="Imagen" class="w-full" />
+					</div>
+				</div>
+			</div>
+			<div class="mt-6 sm:mt-0" id="jose">
+				<div class="mt-6 sm:mt-0 flex flex-col md:flex-row items-center">
+					<div class="w-full">
+						<Image src={Jose} alt="Imagen" class="w-full" />
+					</div>
+					<div class="w-full flex items-center justify-center mt-6 mb-10">
+						<div class="w-4/6 md:w-5/6 xl:w-4/6 text-center">
+							<h4 class="text-xl sm:text-2xl">La Villa habitación José</h4>
+							<p class="text-base mt-3"></p>
+							<div class="flex flex-col gap-2 mt-3">
+								<div class="flex flex-row gap-10">
+									<p class="title">Bathroom</p>
+									<p>1</p>
+								</div>
+								<div class="flex flex-row gap-10">
+									<p class="title">Beds</p>
+									<p>1</p>
+								</div>
+								<div class="flex flex-row gap-10">
+									<p class="title">Guest</p>
+									<p>2</p>
+								</div>
+							</div>
+							<a href='/room/jose'><button class="p-3">MORE INFO</button></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<Footer SeparatorColor="#FFF6DD" />
+	</main>
+</Layout>
+
+<script>
+	document.addEventListener('DOMContentLoaded', (event) => {
+		const lang = document.cookie.split('; ').find(row => row.startsWith('lang'))!.split('=')[1];
+
+		const translations = {
+			es: {
+				conchi: 'La joya de la corona, nuestra Suite La Villa Conchi, es un santuario de lujo y exclusividad. Con amplias vistas al mar, esta suite es la definición máxima de un escape paradisíaco, donde el desayuno en la cama se convierte en una experiencia celestial.<br><br>Los huéspedes también pueden reservar con antelación el almuerzo o la cena en nuestro restaurante por un costo adicional.',
+				vista: 'Despierta cada mañana con el sublime espectáculo del amanecer sobre el océano. Nuestra Vista del Mar Suite ofrece panorámicas incomparables del Pacífico, complementadas con todas las comodidades modernas y desayuno para comenzar el día de la mejor manera.<br><br>Los huéspedes también pueden reservar con antelación el almuerzo o la cena en nuestro restaurante por un costo adicional.',
+				maya: 'Sumérgete en la historia y la magia de la cultura maya con nuestra Suite Maya. Esta habitación no solo promete descanso y relajación, sino también una inmersión cultural, acompañada cada mañana por un desayuno lleno de sabores locales.<br><br>Los huéspedes también pueden reservar con antelación el almuerzo o la cena en nuestro restaurante por un costo adicional.',
+				penelope: 'Inspirada en los sueños de tranquilidad y romance, la Habitación Penélope es un refugio íntimo perfecto para parejas. Con detalles elegantes y una atmósfera acogedora, es el lugar ideal para desconectar y reencontrarse.<br><br>Los huéspedes también pueden reservar con antelación el almuerzo o la cena en nuestro restaurante por un costo adicional.',
+				jose: 'Un tributo a la tradición y al calor humano, la Habitación José combina confort moderno con toques tradicionales mexicanos. Su decoración y ambiente invitan a vivir la autenticidad de Colima en cada momento.<br><br>Los huéspedes también pueden reservar con antelación el almuerzo o la cena en nuestro restaurante por un costo adicional.'
+			},
+			en: {
+				conchi: 'The crown jewel, our La Villa Conchi Suite, is a sanctuary of luxury and exclusivity. With expansive sea views, this suite is the ultimate definition of a paradisiacal escape, where breakfast in bed becomes a heavenly experience.<br><br>Guests can also book lunch or dinner in our restaurant in advance for an additional cost.',
+				vista: 'Wake up every morning to the sublime spectacle of the sunrise over the ocean. Our Vista del Mar Suite offers unparalleled panoramas of the Pacific, complemented with all the modern comforts and breakfast to start the day in the best way.<br><br>Guests can also book lunch or dinner in our restaurant in advance for an additional cost.',
+				maya: 'Immerse yourself in the history and magic of the Mayan culture with our Maya Suite. This room not only promises rest and relaxation, but also a cultural immersion, accompanied each morning by a breakfast full of local flavors.<br><br>Guests can also book lunch or dinner in our restaurant in advance for an additional cost.',
+				penelope: 'Inspired by dreams of tranquility and romance, the Penelope Room is a perfect intimate refuge for couples. With elegant details and a cozy atmosphere, it is the ideal place to disconnect and reconnect.<br><br>Guests can also book lunch or dinner in our restaurant in advance for an additional cost.',
+				jose: 'A tribute to tradition and human warmth, the José Room combines modern comfort with traditional Mexican touches. Its decoration and atmosphere invite you to live the authenticity of Colima at every moment.<br><br>Guests can also book lunch or dinner in our restaurant in advance for an additional cost.'
+			}
+		};
+
+		document.querySelector('#conchi p')!.innerHTML = translations[lang as 'es' | 'en'].conchi;
+		document.querySelector('#vista p')!.innerHTML = translations[lang as 'es' | 'en'].vista;
+		document.querySelector('#maya p')!.innerHTML = translations[lang as 'es' | 'en'].maya;
+		document.querySelector('#penelope p')!.innerHTML = translations[lang as 'es' | 'en'].penelope;
+		document.querySelector('#jose p')!.innerHTML = translations[lang as 'es' | 'en'].jose;
+	});
+</script>
+
+
+<style>
+    div{
+        color: #123940;
+        text-align: left;
+    }
+    h4{
+        font-family: 'Cinzel';
+        font-weight: bold;
+    }
+    hr{
+        background-color: #d3d1d1;
+        text-align: left;
+        border: none;
+        height: 1px;
+    }
+    p{
+        font-family: 'Poppins';
+        font-weight: normal;
+        color: #666666;
+    }
+    #bottom-square-left, #bottom-square-right{
+        color: white;
+        font-family: 'Cinzel';
+        font-weight: normal;
+        padding-left: 2.5em;
+        padding-right: 2.5em;
+    }
+    .title {
+        font-family: 'Cinzel';
+        font-weight: bold;
+        width: 100px;
+    }
+    button{
+        background-color: #A18549;
+        color: white;
+        font-size: 0.8em;
+        margin-top: 1.2em;
+    }
+</style>

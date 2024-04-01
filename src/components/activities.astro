@@ -1,12 +1,79 @@
 ---
-import ActivitiesCard from "../components/activities_card.astro";
 ---
 
 
 <section class="p-10 mt-204 container mx-auto sm:px-8">
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-10">
-        <ActivitiesCard title="Unforgettable Weddings" body="Celebrate your special day in an idyllic setting with our specialized wedding services." />
-        <ActivitiesCard title="Private Beach Club" body="Enjoy our exclusive club beach with private access for guests." />
-        <ActivitiesCard title="Luxury Accommodation" body="6 rooms designed to provide you comfort and elegance during your stay." />
+        <div class="w-full">
+            <h4 class="text-xl sm:text-2xl min-h-[3.6rem]" id="title1">Unforgettable Weddings</h4>
+            <hr class="w-1/6 mt-4">
+            <p class="mt-4" id="body1">Celebrate your special day in an idyllic setting with our specialized wedding services.</p>
+        </div>
+        <div class="w-full">
+            <h4 class="text-xl sm:text-2xl min-h-[3.6rem]" id="title2">Private Beach Club</h4>
+            <hr class="w-1/6 mt-4">
+            <p class="mt-4" id="body2">Enjoy our exclusive club beach with private access for guests.</p>
+        </div>
+        <div class="w-full">
+            <h4 class="text-xl sm:text-2xl min-h-[3.6rem]" id="title3">Luxury Accommodation</h4>
+            <hr class="w-1/6 mt-4">
+            <p class="mt-4" id="body3">6 rooms designed to provide you comfort and elegance during your stay.</p>
+        </div>
     </div>
 </section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+    const lang = document.cookie.split('; ').find(row => row.startsWith('lang'))!.split('=')[1];
+
+    const translations: { [key: string]: { [key: string]: string } } = {
+        es: {
+            unforgettableWeddings: 'Bodas Inolvidables',
+            unforgettableWeddingsBody: 'Celebra tu día especial en un entorno idílico con nuestros servicios especializados para bodas.',
+            privateBeachClub: 'Club de Playa Privado',
+            privateBeachClubBody: 'Disfruta de nuestro club de playa exclusivo con acceso privado para los huéspedes.',
+            luxuryAccommodation: 'Alojamiento de Lujo',
+            luxuryAccommodationBody: '6 habitaciones diseñadas para brindarte comodidad y elegancia durante tu estancia.'
+        },
+        en: {
+            unforgettableWeddings: 'Unforgettable Weddings',
+            unforgettableWeddingsBody: 'Celebrate your special day in an idyllic setting with our specialized wedding services.',
+            privateBeachClub: 'Private Beach Club',
+            privateBeachClubBody: 'Enjoy our exclusive club beach with private access for guests.',
+            luxuryAccommodation: 'Luxury Accommodation',
+            luxuryAccommodationBody: '6 rooms designed to provide you comfort and elegance during your stay.'
+        }
+    };
+
+    document.querySelector('#title1')!.textContent = translations[lang].unforgettableWeddings;
+    document.querySelector('#body1')!.textContent = translations[lang].unforgettableWeddingsBody;
+
+    document.querySelector('#title2')!.textContent = translations[lang].privateBeachClub;
+    document.querySelector('#body2')!.textContent = translations[lang].privateBeachClubBody;
+
+    document.querySelector('#title3')!.textContent = translations[lang].luxuryAccommodation;
+    document.querySelector('#body3')!.textContent = translations[lang].luxuryAccommodationBody;
+});
+
+</script>
+
+<style>
+    h4{
+        font-family: 'Cinzel';
+        font-weight: normal;
+        color: #BAA76F;
+        text-align: left;
+    }
+
+    hr{
+        background-color: #d3d1d1;
+        text-align: left;
+        border: none;
+        height: 1px;
+    }
+
+    p{
+        color: #717A87;
+        text-align: left;
+    }
+</style>

@@ -1,0 +1,159 @@
+---
+import { Image } from "astro:assets";
+import FooterDivider from "../images/footer-divider.png";
+import Facebook from "../images/icons/facebook.svg";
+import Instagram from "../images/icons/instagram.svg";
+import Whatsapp from "../images/icons/whatsapp.svg";
+import Logo from "../images/logos/la_villa_logo.svg";
+import LogoWhite from "../images/logos/la_villa_white_no_text.svg";
+import Turtle from "../images/turtle.png";
+interface Props {
+	SeparatorColor: string;
+}
+
+const { SeparatorColor } = Astro.props;
+---
+<footer>
+    <div class="flex justify-center items-center md:p-14 sm:p-10" id="image-separator" style={{backgroundColor: SeparatorColor }}>
+        <Image src={Logo} alt="La villa logo" class="md:w-1/6 sm:w-1/2" />
+    </div>
+    <Image src={FooterDivider} alt="La villa logo" class="w-full" />
+
+    <div class="w-full">
+        <div class="grid grid-cols-1 md:grid-cols-3">
+            <div class="flex items-center justify-center" id="social">
+                <div class="text-center p-8">
+                    <h1 class="text-2xl"></h1>
+                    <a href="https://www.instagram.com" target="_blank">
+                        <button class="mt-4 p-5 md:p-2 xl:p-5"></button>
+                    </a>
+                </div>
+            </div>
+            <Image src={Turtle} alt="La villa beach" class="h-full" />
+            <div class="flex items-center justify-center" id="contact">
+                <div class="isolate w-full p-10">
+                    <div class="text-center">
+                      <h2 class="text-3xl font-medium tracking-tight sm:text-2xl md:text-2xl xl:text-4xl"></h2>
+                    </div>
+                    <form id="contactForm" class="mx-auto">
+                        <div class="mt-3.5">
+                            <input type="text" id="name" name="name" class="md:px-3 md:py-2 border bg-transparent w-full" placeholder="">
+                        </div>
+                        <div class="mt-3.5">
+                            <input type="email" id="email" name="email" class="px-3 py-2 border bg-transparent w-full" placeholder="">
+                        </div>
+                        <div class="mt-3.5">
+                            <textarea name="message" id="message" rows="4" class="block w-full border text-gray-900 bg-transparent sm:text-sm sm:leading-6" placeholder=""></textarea>
+                        </div>
+                        <div class="md:mt-5 mt-8 xl:mt-10 flex items-center justify-center">
+                            <button type="submit" class="block w-1/2 text-center text-sm font-semibold text-white shadow-sm p-5 md:p-2 xl:p-5"></button>
+                        </div>
+                    </form>
+                  </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="pt-9 pb-9" style="background-color: #123940;">
+        <div class="mx-auto w-full max-w-[1166px] px-4 xl:px-0">
+            <div class="flex flex-col justify-center items-center md:justify-between md:flex-row">
+                <div class="md:w-[316px]">
+                <a href="https://wa.me/+18086511580" target="_blank" class="font-normal text-white">+1 (808) 651-1580</a>
+                <br><br>
+                <a href="mailto:hello@lavillla.com" class="mt-[18px] font-normal text-white">hello@lavillla.com</a>
+                </div>
+                <div class="mt-6 flex w-full flex-col justify-between text-white sm:flex-row md:mt-0 md:max-w-[341px]">
+                <div class="">
+                </div>
+                <div class="mt-[8px] flex gap-4 justify-center items-center">
+                    <a class="hover:scale-110" target="_blank" href="#"><Image alt="facebook icon" loading="lazy" width="36" height="36" decoding="async" data-nimg="1" style="color:transparent" src={Facebook} /></a>
+                    <a class="hover:scale-110" target="_blank" href="/"><Image alt="linkdin icon" loading="lazy" width="36" height="36" decoding="async" data-nimg="1" style="color:transparent" src={Instagram} /></a>
+                    <a class="hover:scale-110" target="_blank" href="/"><Image alt="instagram icon" loading="lazy" width="36" height="36" decoding="async" data-nimg="1" style="color:transparent" src={Whatsapp} /></a>
+                </div>
+            </div>
+        </div>
+        <hr class="mt-[30px] text-white" />
+        <div class="flex flex-col justify-center items-center md:justify-between md:flex-row mt-10">
+            <p class="text-[10px] font-normal text-white md:text-[12px]">
+                Copyright 2024 La Villa
+            </p>
+            <a target="_blank" href="/"><Image alt="instagram icon" loading="lazy" decoding="async" data-nimg="1" class="md:w-3/4 w-full mt-5" src={LogoWhite} /></a>
+        </div>
+    </div>
+</div>        
+</footer>
+
+<script>
+    // const form = document.getElementById('contactForm')!;
+
+    // form.addEventListener('submit', (e) => {
+    //     e.preventDefault();
+
+    //     const formData = new FormData(form);
+    //     const subject = 'Contact Submission';
+    //     const body = `Name: ${formData.get('name')}\nEmail: ${formData.get('email')}\nMessage: ${formData.get('message')}`;
+    //     const mailtoLink = `mailto:hello@lavillla.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    //     window.location.href = mailtoLink;
+
+    //     form.reset();
+    // });
+
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const lang = document.cookie.split('; ').find(row => row.startsWith('lang'))!.split('=')[1];
+
+        const translations = {
+            es: {
+                followUs: 'Síguenos en nuestras redes sociales',
+                instagram: 'INSTAGRAM',
+                contact: 'Contacto',
+                name: 'Nombre',
+                email: 'Correo electrónico',
+                message: 'Mensaje',
+                letsTalk: 'Hablemos'
+            },
+            en: {
+                followUs: 'Follow us on our social networks',
+                instagram: 'INSTAGRAM',
+                contact: 'Contact',
+                name: 'Name',
+                email: 'Email',
+                message: 'Message',
+                letsTalk: "Let's talk"
+            }
+        };
+
+        document.querySelector('#social h1')!.textContent = translations[lang as 'es' | 'en'].followUs;
+        document.querySelector('#social button')!.textContent = translations[lang as 'es' | 'en'].instagram;
+
+        document.querySelector('#contact h2')!.textContent = translations[lang as 'es' | 'en'].contact;
+        document.querySelector('#name')!.placeholder = translations[lang as 'es' | 'en'].name;
+        document.querySelector('#email')!.placeholder = translations[lang as 'es' | 'en'].email;
+        document.querySelector('#message')!.placeholder = translations[lang as 'es' | 'en'].message;
+        document.querySelector('#contact button')!.textContent = translations[lang as 'es' | 'en'].letsTalk;
+    });
+</script>
+
+<style>
+    #social{
+        background-color: #BAA76F;
+        font-family: 'Cinzel';
+        font-weight: bold;
+        color: #123940;
+    }
+    button{
+        background-color: #123940;
+        color: white;
+        font-weight: normal;
+        font-size: 0.8em;
+    }
+    #contact{
+        background-color: #F6F2E7;
+        font-family: 'Cinzel';
+        color: #123940;
+    }
+    #contact input, textarea{
+        border-color: #00000033;
+        font-family: 'Lato';
+    }
+</style>

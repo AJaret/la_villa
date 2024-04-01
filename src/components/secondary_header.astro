@@ -1,0 +1,127 @@
+---
+import { Image } from "astro:assets";
+import Logo from "../images/logos/la_villa_logo.svg";
+import US from "../images/icons/us.png";
+import MX from "../images/icons/mx.png";
+
+interface Props {
+	BackgroundUrl: string;
+}
+
+const { BackgroundUrl } = Astro.props;
+---
+
+<header class="mt-4 ml-4 mr-4 flex flex-col justify-between" style={{backgroundImage: `url(${BackgroundUrl})`}}>
+    <div class="flex justify-end">
+        <div class="columns-1 sm:columns-2 w-full md:w-10/12 flex items-center">
+            <Image src={Logo} id="header-bg" alt="La villa logo" class="p-4 opacity-90" loading="eager"/>
+            <nav class="flex items-center w-full flex-col sm:flex-row py-4 justify-center gap-10">
+                <a href="/" class="font-normal hover:font-bold">Home</a>
+                <a href="/" class="font-normal hover:font-bold">About</a>
+                <a href="/rooms" class="font-normal hover:font-bold">Rooms</a>
+                <a href="/" class="font-normal hover:font-bold">Reservation</a>
+                <a href="#contact" class="font-normal hover:font-bold">Contact</a>
+                <button change-lang-es><Image src={MX} alt="mx flag" class="h-7 w-7"></button>
+                <button change-lang-en><Image src={US} alt="mx flag" class="h-7 w-7"></button>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const lang = document.cookie.split('; ').find(row => row.startsWith('lang'))!.split('=')[1];
+        const buttonEs = document.querySelector('[change-lang-es]');
+        const buttonEn = document.querySelector('[change-lang-en]');
+        const translations: { [key: string]: { [key: string]: string } } = {
+            es: {
+                home: 'Inicio',
+                about: 'Acerca de',
+                rooms: 'Habitaciones',
+                reservation: 'Reservación',
+                contact: 'Contacto',
+            },
+            en: {
+                home: 'Home',
+                about: 'About',
+                rooms: 'Rooms',
+                reservation: 'Reservation',
+                contact: 'Contact',
+            }
+        };
+
+        document.querySelectorAll('nav a').forEach((link, index) => {
+            link.textContent = Object.values(translations[lang])[index];
+        });
+
+        if (lang === 'es') {
+            buttonEs!.style.display = 'none';
+        } else {
+            buttonEn!.style.display = 'none';
+        }
+
+        const path = window.location.pathname;
+        const navLinks = document.querySelectorAll('nav a');
+        navLinks.forEach((link) => {
+            if (link.getAttribute('href') === path) {
+                link.classList.remove('font-normal');
+                link.classList.add('font-bold');
+            }
+        });
+    });
+
+    const setCookie = (name:string, value:string, days:number) => {
+        let expires = '';
+        if (days) {
+            const date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            expires = `; expires=${date.toUTCString()}`;
+        }
+        document.cookie = `${name}=${value}${expires}; path=/`;
+    };
+
+    function deleteCookie(name:string) {
+        document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+    }
+
+    const buttonEs = document.querySelectorAll('[change-lang-es]');
+    const buttonEn = document.querySelectorAll('[change-lang-en]');
+
+    buttonEs.forEach((button) => {
+        button.addEventListener('click', ()=>{
+            deleteCookie('lang');
+            setCookie('lang', 'es', 30);
+            location.reload();
+        });
+    });
+    buttonEn.forEach((button) => {
+        button.addEventListener('click', ()=>{
+            deleteCookie('lang');
+            setCookie('lang', 'en', 30);
+            location.reload();
+        });
+    });
+</script>
+
+<style>
+    header{
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        height: 50vh;
+    }
+    nav{
+        background-color: rgba(186, 167, 111, 0.7);
+        color: white;
+    }
+    #header-bg{
+        background-color: #FFF6DD;
+    }
+    #reservation{
+        background-color: #123940;
+        color: white;
+        font-family: 'Cinzel';
+        font-weight: normal;
+        font-size: 1.1em;
+    }
+</style>

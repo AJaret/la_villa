@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="28.298" height="21.223" viewBox="0 0 28.298 21.223">
+  <g id="Layer_3" data-name="Layer 3" transform="translate(0 -8)">
+    <path id="Trazado_186" data-name="Trazado 186" d="M26.971,8H1.326A1.326,1.326,0,0,0,0,9.326V23.475A1.326,1.326,0,0,0,1.326,24.8H12.38V26.57H11.5a2.213,2.213,0,0,0-2.211,2.211.442.442,0,0,0,.442.442H18.57a.442.442,0,0,0,.442-.442A2.213,2.213,0,0,0,16.8,26.57h-.884V24.8h3.1a.442.442,0,0,0,0-.884H1.326a.442.442,0,0,1-.442-.442V9.326a.442.442,0,0,1,.442-.442H26.971a.442.442,0,0,1,.442.442v3.537a.442.442,0,0,0,.884,0V9.326A1.326,1.326,0,0,0,26.971,8ZM18.053,28.339H10.245a1.329,1.329,0,0,1,1.251-.884H16.8a1.329,1.329,0,0,1,1.251.884ZM15.033,24.8V26.57H13.265V24.8Z"/>
+    <path id="Trazado_187" data-name="Trazado 187" d="M52.632,37.033H47.326A1.326,1.326,0,0,1,46,35.707V23.326A1.326,1.326,0,0,1,47.326,22h5.306a1.326,1.326,0,0,1,1.326,1.326v12.38A1.326,1.326,0,0,1,52.632,37.033ZM47.326,22.884a.442.442,0,0,0-.442.442v12.38a.442.442,0,0,0,.442.442h5.306a.442.442,0,0,0,.442-.442V23.326a.442.442,0,0,0-.442-.442Z" transform="translate(-25.661 -7.81)"/>
+    <path id="Trazado_188" data-name="Trazado 188" d="M52.211,42.422a2.211,2.211,0,1,1,2.211-2.211A2.211,2.211,0,0,1,52.211,42.422Zm0-3.537a1.326,1.326,0,1,0,1.326,1.326A1.326,1.326,0,0,0,52.211,38.884Z" transform="translate(-27.892 -16.735)"/>
+    <circle id="Elipse_4" data-name="Elipse 4" cx="0.5" cy="0.5" r="0.5" transform="translate(22 16)"/>
+    <ellipse id="Elipse_5" data-name="Elipse 5" cy="0.5" ry="0.5" transform="translate(24 16)"/>
+    <circle id="Elipse_6" data-name="Elipse 6" cx="0.5" cy="0.5" r="0.5" transform="translate(26 16)"/>
+    <ellipse id="Elipse_7" data-name="Elipse 7" cx="0.5" cy="1" rx="0.5" ry="1" transform="translate(22 17)"/>
+    <ellipse id="Elipse_8" data-name="Elipse 8" cy="1" ry="1" transform="translate(24 17)"/>
+    <ellipse id="Elipse_9" data-name="Elipse 9" cx="0.5" cy="1" rx="0.5" ry="1" transform="translate(26 17)"/>
+    <circle id="Elipse_10" data-name="Elipse 10" cx="0.5" cy="0.5" r="0.5" transform="translate(22 20)"/>
+    <ellipse id="Elipse_11" data-name="Elipse 11" cy="0.5" ry="0.5" transform="translate(24 20)"/>
+    <circle id="Elipse_12" data-name="Elipse 12" cx="0.5" cy="0.5" r="0.5" transform="translate(26 20)"/>
+    <circle id="Elipse_13" data-name="Elipse 13" cx="0.5" cy="0.5" r="0.5" transform="translate(22 27)"/>
+    <ellipse id="Elipse_14" data-name="Elipse 14" cy="0.5" ry="0.5" transform="translate(24 27)"/>
+    <circle id="Elipse_15" data-name="Elipse 15" cx="0.5" cy="0.5" r="0.5" transform="translate(26 27)"/>
+  </g>
+</svg>
