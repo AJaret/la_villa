@@ -1,0 +1,88 @@
+---
+import Footer from '../components/footer.astro';
+import SecondaryHeader from '../components/secondary_header.astro';
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+
+import Img1 from '../images/about/1.png'
+import Img2 from '../images/about/2.png'
+import Img3 from '../images/about/3.png'
+---
+
+<Layout title="La Villa">
+	<main>
+        <SecondaryHeader BackgroundUrl='src/images/backgrounds/secondary_header2.png' />
+        <div class="mt-16 mb-16 container grid grid-cols-1 md:grid-cols-2 gap-20">
+			<div class="col-span-1 relative">
+				<h4 class="text-2xl">CUYUTLÁN IS A TOWN LOCATED IN THE MUNICIPALITY OF ARMERÍA, IN COLIMA, MEXICO. THE WORD CUYUTLÁN DERIVES FROM THE NAHUATL “COYOTL” WHICH MEANS COYOTE AND “TLAN” WHICH IS AN ENDING THAT INDICATES PLACE OF, THAT IS WHY CUYUTLÁN MEANS “PLACE OF COYOTES”</h4>
+				<hr class="absolute w-full sm:w-180 mt-8 right-0">
+				<p class="mt-16">
+					In the late 1940s, nestled along the serene shores of Cuyutlán, a villa emerged, commissioned by a prominent Mexico City politician for his discreet mistress. The elegant structure, veiled in mystery, bore witness to clandestine rendezvous and whispered secrets that echoed through its lavish halls. Over the years, the villa became a sanctuary of forbidden love, its walls adorned with tales of passion and hidden desires. As time unfolded, the once-secret haven transformed into a symbol of timeless allure, still standing proudly by the tranquil sea, guarding the untold stories within.<br><br>
+					Nowadays, La Villa Cuyutlán stands as a testament to the passage of time and transformation. The once-secret refuge has evolved into a beautifully appointed boutique hotel and restaurant, blending historic charm with modern luxury. Guests are welcomed into a world where the whispers of the past are now woven into the fabric of exquisite hospitality. The grounds, once shrouded in secrecy, now offer a picturesque retreat by the sea, inviting visitors to indulge in the alluring atmosphere of this storied destination.<br><br>
+					At La Villa Cuyutlán’s vibrant Lila’s Beach Club, guests are treated to the contrasting beauty of volcanic black sands as they bask in the sun. Nature’s spectacle unfolds as whales and dolphins gracefully navigate the nearby waters, creating an enchanting backdrop for those who choose to lounge along the shore. This coastal haven combines the allure of history with the wonders of nature, offering a unique and unforgettable experience for those who seek both relaxation and the thrill of marine encounters.<br><br>
+					At La Villa Cuyutlán, guests enjoy the Ola Verde, a globally renowned as a famous surfing wave. As surf enthusiasts ride its powerful swells, they are immersed in the thrill of the sport against the backdrop of the volcanic black sands. Guests at the beach club can witness skilled surfers mastering the Ola Verde, adding an exhilarating dimension to the coastal experience.<br><br>
+					Indeed, Cuyutlán has gained world fame for its unique salt production. The salt flats in the region are a mesmerizing sight, where the convergence of seawater and intense sunlight creates the ideal conditions for salt crystallization. This centuries-old tradition of harvesting salt has not only shaped the local economy but has also become a distinctive feature drawing visitors to witness the intricate process and savor the exceptional quality of Cuyutlán’s salt.<br>
+					During the era when passenger railroads reigned as the primary mode of transportation, Cuyutlán held the distinguished status of being Mexico’s most famous beach destination. The convenience of rail travel brought visitors seeking sun, sea, and relaxation to the pristine shores of Cuyutlán. The beaches flourished with vibrant energy as travelers embarked on a leisurely journey by rail to experience the beauty and tranquility that made Cuyutlán a sought-after retreat in Mexico’s history.<br><br>
+					Cuyutlán’s history holds a fascinating twist, as it served as the capital of Mexico for two nights during the tumultuous period of the Revolution. In the midst of political upheaval, the town took on a pivotal role, becoming the temporary seat of power. The echoes of that brief chapter resonate in the town’s past, adding a unique layer to Cuyutlán’s historical narrative.<br><br>
+					Cuyutlán takes pride in being home to one of the largest sea turtle sanctuaries globally, where diligent efforts are made to nurture and protect four species of Pacific sea turtles. This sanctuary stands as a testament to the town’s commitment to conservation, providing a safe haven for these magnificent creatures. Visitors have the opportunity to witness the delicate process of nurturing sea turtles and contribute to the ongoing efforts to ensure the well-being and survival of these endangered species.<br><br>
+					Absolutely, a tour of the lagoons and estuaries adjoining the Sea Turtle Sanctuary is a must for visitors to Cuyutlán. Exploring these natural wonders offers a chance to witness the diverse ecosystem that surrounds the sanctuary. The lagoons and estuaries provide a habitat for various bird species and showcase the ecological richness of the region. It’s an immersive experience that complements the conservation efforts of the Sea Turtle Sanctuary, allowing visitors to appreciate the interconnected beauty of Cuyutlán’s coastal environment.
+				</p>
+			</div>
+			<div class="col-span-1">
+				<Image src={Img1} alt="Image 1" />
+				<Image src={Img2} alt="Image 2" class="mt-9" />
+				<Image src={Img3} alt="Image 3" class="mt-9" />
+			</div>
+		</div>
+		<Footer SeparatorColor="#FFF6DD" />
+	</main>
+</Layout>
+
+<script>
+	document.addEventListener('DOMContentLoaded', (event) => {
+		const lang = document.cookie.split('; ').find(row => row.startsWith('lang'))!.split('=')[1];
+
+		const translations = {
+			es: {
+				conchi: 'La joya de la corona, nuestra Suite La Villa Conchi, es un santuario de lujo y exclusividad. Con amplias vistas al mar, esta suite es la definición máxima de un escape paradisíaco, donde el desayuno en la cama se convierte en una experiencia celestial.<br><br>Los huéspedes también pueden reservar con antelación el almuerzo o la cena en nuestro restaurante por un costo adicional.',
+				vista: 'Despierta cada mañana con el sublime espectáculo del amanecer sobre el océano. Nuestra Vista del Mar Suite ofrece panorámicas incomparables del Pacífico, complementadas con todas las comodidades modernas y desayuno para comenzar el día de la mejor manera.<br><br>Los huéspedes también pueden reservar con antelación el almuerzo o la cena en nuestro restaurante por un costo adicional.',
+				maya: 'Sumérgete en la historia y la magia de la cultura maya con nuestra Suite Maya. Esta habitación no solo promete descanso y relajación, sino también una inmersión cultural, acompañada cada mañana por un desayuno lleno de sabores locales.<br><br>Los huéspedes también pueden reservar con antelación el almuerzo o la cena en nuestro restaurante por un costo adicional.',
+				penelope: 'Inspirada en los sueños de tranquilidad y romance, la Habitación Penélope es un refugio íntimo perfecto para parejas. Con detalles elegantes y una atmósfera acogedora, es el lugar ideal para desconectar y reencontrarse.<br><br>Los huéspedes también pueden reservar con antelación el almuerzo o la cena en nuestro restaurante por un costo adicional.',
+				jose: 'Un tributo a la tradición y al calor humano, la Habitación José combina confort moderno con toques tradicionales mexicanos. Su decoración y ambiente invitan a vivir la autenticidad de Colima en cada momento.<br><br>Los huéspedes también pueden reservar con antelación el almuerzo o la cena en nuestro restaurante por un costo adicional.'
+			},
+			en: {
+				conchi: 'The crown jewel, our La Villa Conchi Suite, is a sanctuary of luxury and exclusivity. With expansive sea views, this suite is the ultimate definition of a paradisiacal escape, where breakfast in bed becomes a heavenly experience.<br><br>Guests can also book lunch or dinner in our restaurant in advance for an additional cost.',
+				vista: 'Wake up every morning to the sublime spectacle of the sunrise over the ocean. Our Vista del Mar Suite offers unparalleled panoramas of the Pacific, complemented with all the modern comforts and breakfast to start the day in the best way.<br><br>Guests can also book lunch or dinner in our restaurant in advance for an additional cost.',
+				maya: 'Immerse yourself in the history and magic of the Mayan culture with our Maya Suite. This room not only promises rest and relaxation, but also a cultural immersion, accompanied each morning by a breakfast full of local flavors.<br><br>Guests can also book lunch or dinner in our restaurant in advance for an additional cost.',
+				penelope: 'Inspired by dreams of tranquility and romance, the Penelope Room is a perfect intimate refuge for couples. With elegant details and a cozy atmosphere, it is the ideal place to disconnect and reconnect.<br><br>Guests can also book lunch or dinner in our restaurant in advance for an additional cost.',
+				jose: 'A tribute to tradition and human warmth, the José Room combines modern comfort with traditional Mexican touches. Its decoration and atmosphere invite you to live the authenticity of Colima at every moment.<br><br>Guests can also book lunch or dinner in our restaurant in advance for an additional cost.'
+			}
+		};
+
+		// document.querySelector('#conchi p')!.innerHTML = translations[lang as 'es' | 'en'].conchi;
+		// document.querySelector('#vista p')!.innerHTML = translations[lang as 'es' | 'en'].vista;
+		// document.querySelector('#maya p')!.innerHTML = translations[lang as 'es' | 'en'].maya;
+		// document.querySelector('#penelope p')!.innerHTML = translations[lang as 'es' | 'en'].penelope;
+		// document.querySelector('#jose p')!.innerHTML = translations[lang as 'es' | 'en'].jose;
+	});
+</script>
+
+
+<style>
+    h4{
+        font-family: 'Cinzel';
+        font-weight: normal;
+		color: #6F8471;
+    }
+    hr{
+        background-color: #d3d1d1;
+        text-align: left;
+        border: none;
+        height: 1px;
+    }
+    p{
+        font-family: 'Lato';
+        font-weight: normal;
+        color: #123940;
+    }
+</style>
