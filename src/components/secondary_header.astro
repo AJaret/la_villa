@@ -11,15 +11,37 @@ interface Props {
 const { BackgroundUrl } = Astro.props;
 ---
 
+<div class="flex justify-end mx-auto w-full px-4 fixed z-[100]" x-data="{ open: false }">
+    <button class="w-14 h-14 relative focus:outline-none rounded" @click="open = !open" id="open-sidebar" style="background-color: #123940;">
+        <div class="block w-5 absolute left-6 top-1/2   transform  -translate-x-1/2 -translate-y-1/2">
+            <span  class="block absolute h-0.5 w-7 text-white bg-current transform transition duration-500 ease-in-out" :class="{'rotate-45': open,' -translate-y-1.5': !open }"></span>
+            <span  class="block absolute  h-0.5 w-5 text-white bg-current   transform transition duration-500 ease-in-out" :class="{'opacity-0': open } "></span>
+            <span  class="block absolute  h-0.5 w-7 text-white bg-current transform  transition duration-500 ease-in-out" :class="{'-rotate-45': open, ' translate-y-1.5': !open}"></span>
+        </div>
+    </button>
+</div>
+
+<div class="fixed bg-gray-800 text-white w-60 h-screen transition-transform transform -translate-x-full ease-in-out duration-300 z-[100]" id="sidebar" style="background-color: #123940;">
+    <div class="p-4">
+        <ul class="mt-4">
+            <li class="mt-5"><a href="/" class="font-normal hover:font-bold">Home</a></li>
+            <li class="mt-5"><a href="/about" class="font-normal hover:font-bold">About</a></li>
+            <li class="mt-5"><a href="/rooms" class="font-normal hover:font-bold">Rooms</a></li>
+            <li class="mt-5"><a href="https://wa.me/+5213141014478" target="_blank" class="font-normal hover:font-bold">Contact</a></li>
+            <li class="mt-5"><button change-lang-es><Image src={MX} alt="mx flag" class="h-7 w-7"></button></li>
+            <li class="mt-5"><button change-lang-en><Image src={US} alt="mx flag" class="h-7 w-7"></button></li>
+        </ul>
+    </div>
+</div>
+
 <header class="mt-4 ml-4 mr-4 flex flex-col justify-between" style={{backgroundImage: `url(${BackgroundUrl})`}}>
     <div class="flex justify-end">
-        <div class="columns-1 sm:columns-2 w-full md:w-10/12 flex items-center">
+        <div class="columns-1 sm:columns-2 w-full md:w-10/12 hidden md:flex items-center">
             <Image src={Logo} id="header-bg" alt="La villa logo" class="p-4 opacity-90" loading="eager"/>
             <nav class="flex items-center w-full flex-col sm:flex-row py-4 justify-center gap-10">
                 <a href="/" class="font-normal hover:font-bold">Home</a>
                 <a href="/about" class="font-normal hover:font-bold">About</a>
                 <a href="/rooms" class="font-normal hover:font-bold">Rooms</a>
-                <a href="/" class="font-normal hover:font-bold">Reservation</a>
                 <a href="https://wa.me/+5213141014478" target="_blank" class="font-normal hover:font-bold">Contact</a>
                 <button change-lang-es><Image src={MX} alt="mx flag" class="h-7 w-7"></button>
                 <button change-lang-en><Image src={US} alt="mx flag" class="h-7 w-7"></button>
@@ -28,6 +50,7 @@ const { BackgroundUrl } = Astro.props;
     </div>
 </header>
 
+<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
         const lang = document.cookie.split('; ').find(row => row.startsWith('lang'))!.split('=')[1];
@@ -62,7 +85,14 @@ const { BackgroundUrl } = Astro.props;
 
         const path = window.location.pathname;
         const navLinks = document.querySelectorAll('nav a');
+        const navLinks2 = document.querySelectorAll('ul li a');
         navLinks.forEach((link) => {
+            if (link.getAttribute('href') === path) {
+                link.classList.remove('font-normal');
+                link.classList.add('font-bold');
+            }
+        });
+        navLinks2.forEach((link) => {
             if (link.getAttribute('href') === path) {
                 link.classList.remove('font-normal');
                 link.classList.add('font-bold');
@@ -100,6 +130,18 @@ const { BackgroundUrl } = Astro.props;
             setCookie('lang', 'en', 30);
             location.reload();
         });
+    });
+
+    const sidebar = document.getElementById('sidebar');
+    const openSidebarButton = document.getElementById('open-sidebar');
+    
+    openSidebarButton!.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if(sidebar?.classList.contains('-translate-x-full')){
+            sidebar!.classList.toggle('-translate-x-full');
+        }else{
+            sidebar!.classList.add('-translate-x-full');
+        }
     });
 </script>
 
