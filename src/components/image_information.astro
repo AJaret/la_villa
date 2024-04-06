@@ -36,7 +36,7 @@ import PoolPicture from "../images/picture2.png";
 </section>
 
 <script>
-    document.addEventListener('DOMContentLoaded', (event) => {
+    document.addEventListener('DOMContentLoaded', () => {
         const lang = document.cookie.split('; ').find(row => row.startsWith('lang'))!.split('=')[1];
 
         const translations: { [key: string]: { [key: string]: string } } = {

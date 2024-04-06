@@ -23,7 +23,7 @@ import Layout from '../layouts/Layout.astro';
 
 
 <script>
-	document.addEventListener('DOMContentLoaded', (event) => {
+	document.addEventListener('DOMContentLoaded', () => {
 		if(document.cookie.split('; ').find(row => row.startsWith('lang')) == undefined){
 			let expires = '';
 			const date = new Date();

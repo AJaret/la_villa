@@ -52,7 +52,7 @@ const { BackgroundUrl } = Astro.props;
 
 <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
 <script>
-    document.addEventListener('DOMContentLoaded', (event) => {
+    document.addEventListener('DOMContentLoaded', () => {
         const lang = document.cookie.split('; ').find(row => row.startsWith('lang'))!.split('=')[1];
         const buttonEs = document.querySelector('[change-lang-es]');
         const buttonEn = document.querySelector('[change-lang-en]');
@@ -78,9 +78,9 @@ const { BackgroundUrl } = Astro.props;
         });
 
         if (lang === 'es') {
-            buttonEs!.style.display = 'none';
+            (buttonEs as HTMLInputElement).style.display = 'none';
         } else {
-            buttonEn!.style.display = 'none';
+            (buttonEn as HTMLInputElement).style.display = 'none';
         }
 
         const path = window.location.pathname;

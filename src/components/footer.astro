@@ -99,7 +99,7 @@ const { SeparatorColor } = Astro.props;
     //     form.reset();
     // });
 
-    document.addEventListener('DOMContentLoaded', (event) => {
+    document.addEventListener('DOMContentLoaded', () => {
         const lang = document.cookie.split('; ').find(row => row.startsWith('lang'))!.split('=')[1];
 
         const translations = {
@@ -127,9 +127,9 @@ const { SeparatorColor } = Astro.props;
         document.querySelector('#social button')!.textContent = translations[lang as 'es' | 'en'].instagram;
 
         document.querySelector('#contact h2')!.textContent = translations[lang as 'es' | 'en'].contact;
-        document.querySelector('#name')!.placeholder = translations[lang as 'es' | 'en'].name;
-        document.querySelector('#email')!.placeholder = translations[lang as 'es' | 'en'].email;
-        document.querySelector('#message')!.placeholder = translations[lang as 'es' | 'en'].message;
+        (document.querySelector('#name') as HTMLInputElement).placeholder = translations[lang as 'es' | 'en'].name;
+        (document.querySelector('#email') as HTMLInputElement).placeholder = translations[lang as 'es' | 'en'].email;
+        (document.querySelector('#message') as HTMLInputElement).placeholder = translations[lang as 'es' | 'en'].message;
         document.querySelector('#contact button')!.textContent = translations[lang as 'es' | 'en'].letsTalk;
     });
 </script>

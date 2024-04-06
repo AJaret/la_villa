@@ -156,7 +156,7 @@ export const getStaticPaths = (() => {
 </Layout>
 
 <script>
-	document.addEventListener('DOMContentLoaded', (event) => {
+	document.addEventListener('DOMContentLoaded', () => {
 		const path = window.location.pathname.split('/')[2];
 		const lang = document.cookie.split('; ').find(row => row.startsWith('lang'))!.split('=')[1];
 
