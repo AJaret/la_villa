@@ -13,25 +13,27 @@ import Img3 from '../images/about/3.png'
 	<main>
         <SecondaryHeader BackgroundUrl='src/images/backgrounds/secondary_header2.png' />
         <div class="mt-16 mb-16 container grid grid-cols-1 md:grid-cols-2 gap-20">
-			<div class="relative">
-				<h4 class="text-2xl" id="title"></h4>
-				<hr class="absolute w-full sm:w-180 mt-8 right-0">
-				<p class="mt-16">
-					<p id="p1"></p><br><br>
-					<p id="p2"></p><br><br>
-					<p id="p3"></p><br><br>
-					<p id="p4"></p><br><br>
-					<p id="p5"></p><br><br>
-					<p id="p6"></p><br><br>
-					<p id="p7"></p><br><br>
-					<p id="p8"></p><br><br>
-					<p id="p9"></p><br><br>
-				</p>
+			<div class="w-full">
+				<div class="relative">
+					<h4 class="text-2xl" id="title"></h4>
+					<hr class="absolute w-full sm:w-180 mt-8 right-0">
+					<p class="mt-16">
+						<p id="p1"></p><br><br>
+						<p id="p2"></p><br><br>
+						<p id="p3"></p><br><br>
+						<p id="p4"></p><br><br>
+						<p id="p5"></p><br><br>
+						<p id="p6"></p><br><br>
+						<p id="p7"></p><br><br>
+						<p id="p8"></p><br><br>
+						<p id="p9"></p><br><br>
+					</p>
+				</div>
 			</div>
-			<div class="w-full place-content-center">
-				<Image src={Img1} alt="Image 1" class="w-3/4" />
-				<Image src={Img2} alt="Image 2" class="mt-9 w-3/4" />
-				<Image src={Img3} alt="Image 3" class="mt-9 w-3/4" />
+			<div class="w-full flex flex-col items-center">
+				<Image src={Img1} alt="Image 1" id="img1" />
+				<Image src={Img2} alt="Image 2" id="img2" class="mt-10" />
+				<Image src={Img3} alt="Image 3" id="img3" class="mt-10" />
 			</div>
 		</div>
 		<Footer SeparatorColor="#FFF6DD" />
@@ -79,6 +81,32 @@ import Img3 from '../images/about/3.png'
 		document.querySelector('#p7')!.innerHTML = translations[lang as 'es' | 'en'].p7;
 		document.querySelector('#p8')!.innerHTML = translations[lang as 'es' | 'en'].p8;
 		document.querySelector('#p9')!.innerHTML = translations[lang as 'es' | 'en'].p9;
+		const title:Element = (document.querySelector('#title') as Element);
+        const p1:Element = (document.querySelector('#p1') as Element);
+        const p2:Element = (document.querySelector('#p2') as Element);
+        const p3:Element = (document.querySelector('#p3') as Element);
+        const p4:Element = (document.querySelector('#p4') as Element);
+        const p5:Element = (document.querySelector('#p5') as Element);
+        const p6:Element = (document.querySelector('#p6') as Element);
+        const p7:Element = (document.querySelector('#p7') as Element);
+        const p8:Element = (document.querySelector('#p8') as Element);
+        const p9:Element = (document.querySelector('#p9') as Element);
+        const img1:Element = (document.querySelector('#img1') as Element);
+        const img2:Element = (document.querySelector('#img2') as Element);
+        const img3:Element = (document.querySelector('#img3') as Element);
+		(title as Element).classList.add('show');
+		(p1 as Element).classList.add('show');
+		(p2 as Element).classList.add('show');
+		(p3 as Element).classList.add('show');
+		(p4 as Element).classList.add('show');
+		(p5 as Element).classList.add('show');
+		(p6 as Element).classList.add('show');
+		(p7 as Element).classList.add('show');
+		(p8 as Element).classList.add('show');
+		(p9 as Element).classList.add('show');
+		(img1 as Element).classList.add('show');
+		(img2 as Element).classList.add('show');
+		(img3 as Element).classList.add('show');
 	});
 </script>
 

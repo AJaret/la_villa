@@ -6,7 +6,7 @@ import US from "../images/icons/us.png";
 import Logo from "../images/logos/la_villa_logo.svg";
 ---
 
-<div class="flex md:hidden justify-end mx-auto w-full px-4 fixed z-[100]" x-data="{ open: false }">
+<div class="flex md:hidden justify-end mx-auto w-full px-4 fixed z-[50]" x-data="{ open: false }">
     <button class="w-14 h-14 relative focus:outline-none rounded" @click="open = !open" id="open-sidebar" style="background-color: #123940;">
         <div class="block w-5 absolute left-6 top-1/2   transform  -translate-x-1/2 -translate-y-1/2">
             <span  class="block absolute h-0.5 w-7 text-white bg-current transform transition duration-500 ease-in-out" :class="{'rotate-45': open,' -translate-y-1.5': !open }"></span>
@@ -32,7 +32,9 @@ import Logo from "../images/logos/la_villa_logo.svg";
 <header class="mt-4 ml-4 mr-4 flex flex-col justify-between">
     <div class="flex justify-end">
         <div class="hidden md:flex columns-1 sm:columns-2 w-full md:w-10/12 items-center">
-            <Image src={Logo} id="header-bg" alt="La villa logo" class="p-4 opacity-90" loading="eager"/>
+            <div id="header-bg">
+                <Image src={Logo} id="header-bg-img" alt="La villa logo" class="p-4 opacity-90" loading="eager"/>
+            </div>
             <nav class="flex items-center w-full flex-col sm:flex-row py-4 justify-center gap-10">
                 <a href="/" class="font-normal hover:font-bold">Home</a>
                 <a href="/about" class="font-normal hover:font-bold">About</a>
@@ -52,14 +54,21 @@ import Logo from "../images/logos/la_villa_logo.svg";
 
     <div class="flex justify-end">
         <div class="columns-2 flex items-center w-full sm:w-4/6 md:w-2/6 p-4" id="reservation">
-            <Image src={Phone} alt="Phone Icon" class="mr-3 w-1/3" loading="eager"/>
-            <p>Make your reservation easily through our website and secure your place in paradise.</p>
+            <Image src={Phone} alt="Phone Icon" id="phone-img" class="mr-3 w-1/3" loading="eager"/>
+            <p id="reservation_text">Make your reservation easily through our website and secure your place in paradise.</p>
         </div>
     </div>
 </header>
 <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', () => {
+        const header:Element = (document.querySelector('#header-bg-img') as Element);
+        const headerPhone:Element = (document.querySelector('#phone-img') as Element);
+        const reservation:Element = (document.querySelector('#reservation_text') as Element);
+        (reservation as Element).classList.add('show');
+        (header as Element).classList.add('show');
+        (headerPhone as Element).classList.add('show');
+
         const lang = document.cookie.split('; ').find(row => row.startsWith('lang'))!.split('=')[1];
         const buttonEs = document.querySelector('[change-lang-es]');
         const buttonEs2 = document.querySelector('[change-lang-es2]');
@@ -115,8 +124,6 @@ import Logo from "../images/logos/la_villa_logo.svg";
         });
     });
 
-    
-
     const setCookie = (name:string, value:string, days:number) => {
         let expires = '';
         if (days) {
@@ -132,7 +139,9 @@ import Logo from "../images/logos/la_villa_logo.svg";
     }
 
     const buttonEs = document.querySelectorAll('[change-lang-es]');
+    const buttonEs2 = document.querySelectorAll('[change-lang-es2]');
     const buttonEn = document.querySelectorAll('[change-lang-en]');
+    const buttonEn2 = document.querySelectorAll('[change-lang-en2]');
 
     buttonEs.forEach((button) => {
         button.addEventListener('click', ()=>{
@@ -141,7 +150,21 @@ import Logo from "../images/logos/la_villa_logo.svg";
             location.reload();
         });
     });
+    buttonEs2.forEach((button) => {
+        button.addEventListener('click', ()=>{
+            deleteCookie('lang');
+            setCookie('lang', 'es', 30);
+            location.reload();
+        });
+    });
     buttonEn.forEach((button) => {
+        button.addEventListener('click', ()=>{
+            deleteCookie('lang');
+            setCookie('lang', 'en', 30);
+            location.reload();
+        });
+    });
+    buttonEn2.forEach((button) => {
         button.addEventListener('click', ()=>{
             deleteCookie('lang');
             setCookie('lang', 'en', 30);

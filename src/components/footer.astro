@@ -14,36 +14,40 @@ interface Props {
 const { SeparatorColor } = Astro.props;
 ---
 <footer>
-    <div class="flex justify-center items-center md:p-14 sm:p-10" id="image-separator" style={{backgroundColor: SeparatorColor }}>
-        <Image src={Logo} alt="La villa logo" class="md:w-1/6 sm:w-1/2" />
+    <div class="flex justify-center items-center md:p-14 sm:p-10 overflow-hidden" id="image-separator" style={{backgroundColor: SeparatorColor }}>
+        <Image src={Logo} alt="La villa logo" class="md:w-1/6 sm:w-1/2 object-cover hover:scale-105 transition-transform duration-500 ease-in-out" />
     </div>
-    <Image src={FooterDivider} alt="La villa logo" class="w-full" />
+    <div class="overflow-hidden">
+        <Image src={FooterDivider} alt="La villa logo" class="h-full w-full object-cover hover:scale-105 transition-transform duration-500 ease-in-out" />
+    </div>
 
     <div class="w-full">
         <div class="grid grid-cols-1 md:grid-cols-3">
             <div class="flex items-center justify-center" id="social">
                 <div class="text-center p-8">
-                    <h1 class="text-2xl"></h1>
-                    <a href="https://www.instagram.com" target="_blank">
+                    <h1 class="text-2xl" id="social_title"></h1>
+                    <a href="https://www.instagram.com/lavillacuyutlan" target="_blank">
                         <button class="mt-4 p-5 md:p-2 xl:p-5"></button>
                     </a>
                 </div>
             </div>
-            <Image src={Turtle} alt="La villa beach" class="h-full" />
+            <div class="overflow-hidden">
+                <Image src={Turtle} alt="La villa beach" class="h-full w-full object-cover hover:scale-105 transition-transform duration-500 ease-in-out" />
+            </div>
             <div class="flex items-center justify-center" id="contact">
                 <div class="isolate w-full p-10">
                     <div class="text-center">
-                      <h2 class="text-3xl font-medium tracking-tight sm:text-2xl md:text-2xl xl:text-4xl"></h2>
+                      <h2 class="text-3xl font-medium tracking-tight sm:text-2xl md:text-2xl xl:text-4xl" id="contact_title"></h2>
                     </div>
-                    <form id="contactForm" class="mx-auto">
+                    <form id="contactForm" method="post" action="http://lavillacuyutlan.com/send_email/email.php" class="mx-auto">
                         <div class="mt-3.5">
-                            <input type="text" id="name" name="name" class="md:px-3 md:py-2 border bg-transparent w-full" placeholder="">
+                            <input type="text" id="name" name="name" class="md:px-3 md:py-2 border bg-transparent w-full" placeholder="" required>
                         </div>
                         <div class="mt-3.5">
-                            <input type="email" id="email" name="email" class="px-3 py-2 border bg-transparent w-full" placeholder="">
+                            <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" id="email" name="email" class="px-3 py-2 border bg-transparent w-full" placeholder="" required>
                         </div>
                         <div class="mt-3.5">
-                            <textarea name="message" id="message" rows="4" class="block w-full border text-gray-900 bg-transparent sm:text-sm sm:leading-6" placeholder=""></textarea>
+                            <textarea name="message" id="message" rows="4" class="block w-full border text-gray-900 bg-transparent sm:text-sm sm:leading-6" placeholder="" required></textarea>
                         </div>
                         <div class="md:mt-5 mt-8 xl:mt-10 flex items-center justify-center">
                             <button type="submit" class="block w-1/2 text-center text-sm font-semibold text-white shadow-sm p-5 md:p-2 xl:p-5"></button>
@@ -60,7 +64,7 @@ const { SeparatorColor } = Astro.props;
                 <div class="md:w-[316px]">
                 <a href="https://wa.me/+5213141014478" target="_blank" class="font-normal text-white">+52 1 314 101 4478</a>
                 <br><br>
-                <a href="mailto:hello@lavillla.com" class="mt-[18px] font-normal text-white">hello@lavillla.com</a>
+                <a href="mailto:contacto@lavilla.com" class="mt-[18px] font-normal text-white">contacto@lavilla.com</a>
                 </div>
                 <div class="mt-6 flex w-full flex-col justify-between text-white sm:flex-row md:mt-0 md:max-w-[341px]">
                 <div class="">
@@ -77,27 +81,45 @@ const { SeparatorColor } = Astro.props;
             <p class="text-[10px] font-normal text-white md:text-[12px]">
                 Copyright 2024 La Villa
             </p>
-            <a target="_blank" href="/"><Image alt="instagram icon" loading="lazy" decoding="async" data-nimg="1" class="md:w-3/4 w-full mt-5" src={LogoWhite} /></a>
+            <a target="_blank" href="/"><Image alt="Home icon" loading="lazy" decoding="async" data-nimg="1" class="w-full mt-5" src={LogoWhite} /></a>
         </div>
     </div>
 </div>        
 </footer>
 
 <script>
-    // const form = document.getElementById('contactForm')!;
+    window.onload = function() {
+        const getUrlParameter = (name:String) => {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            const results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        };
+        const mailsent = getUrlParameter('mailsent');
+        if (mailsent === 'true') {
+            var confirmationMessage = document.createElement("div");
+            confirmationMessage.textContent = "¡Correo enviado correctamente!";
+            confirmationMessage.style.position = "fixed";
+            confirmationMessage.style.top = "20px";
+            confirmationMessage.style.left = "50%";
+            confirmationMessage.style.transform = "translateX(-50%)";
+            confirmationMessage.style.backgroundColor = "green";
+            confirmationMessage.style.color = "white";
+            confirmationMessage.style.padding = "10px";
+            confirmationMessage.style.borderRadius = "5px";
+            confirmationMessage.style.display = "none";
+            confirmationMessage.id = "confirmationMessage";
+            document.body.appendChild(confirmationMessage);
 
-    // form.addEventListener('submit', (e) => {
-    //     e.preventDefault();
+            setTimeout(function() {
+                confirmationMessage.style.display = "block";
+            }, 2000);
 
-    //     const formData = new FormData(form);
-    //     const subject = 'Contact Submission';
-    //     const body = `Name: ${formData.get('name')}\nEmail: ${formData.get('email')}\nMessage: ${formData.get('message')}`;
-    //     const mailtoLink = `mailto:hello@lavillla.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-    //     window.location.href = mailtoLink;
-
-    //     form.reset();
-    // });
+            setTimeout(function() {
+                confirmationMessage.style.display = "none";
+            }, 10000);
+        }
+    };
 
     document.addEventListener('DOMContentLoaded', () => {
         const lang = document.cookie.split('; ').find(row => row.startsWith('lang'))!.split('=')[1];
@@ -110,7 +132,7 @@ const { SeparatorColor } = Astro.props;
                 name: 'Nombre',
                 email: 'Correo electrónico',
                 message: 'Mensaje',
-                letsTalk: 'Hablemos'
+                letsTalk: 'Enviar'
             },
             en: {
                 followUs: 'Follow us on our social networks',
@@ -119,7 +141,7 @@ const { SeparatorColor } = Astro.props;
                 name: 'Name',
                 email: 'Email',
                 message: 'Message',
-                letsTalk: "Let's talk"
+                letsTalk: "Send"
             }
         };
 
@@ -132,6 +154,25 @@ const { SeparatorColor } = Astro.props;
         (document.querySelector('#message') as HTMLInputElement).placeholder = translations[lang as 'es' | 'en'].message;
         document.querySelector('#contact button')!.textContent = translations[lang as 'es' | 'en'].letsTalk;
     });
+
+    document.addEventListener('scroll', () => {
+        const social:Element = (document.querySelector('#social_title') as Element);
+        const contact:Element = (document.querySelector('#contact_title') as Element);
+        if (isInViewport((social)) && !(social as Element).classList.contains('show')) {
+            (social as Element).classList.add('show');
+            (contact as Element).classList.add('show');
+        }
+    });
+
+    function isInViewport(element:Element) {
+        const rect = element.getBoundingClientRect();
+        return (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+        );
+    }
 </script>
 
 <style>

@@ -2,6 +2,33 @@
 import { Image } from 'astro:assets';
 import ChairPicture from "../images/picture1.png";
 import PoolPicture from "../images/picture2.png";
+import gallery1 from "../images/gallery/1.jpeg";
+import gallery2 from "../images/gallery/2.jpeg";
+import gallery3 from "../images/gallery/3.jpeg";
+import gallery4 from "../images/gallery/4.jpeg";
+import gallery5 from "../images/gallery/5.jpeg";
+import gallery6 from "../images/gallery/6.jpeg";
+import gallery7 from "../images/gallery/7.jpeg";
+import gallery8 from "../images/gallery/8.jpeg";
+import gallery9 from "../images/gallery/9.jpeg";
+import gallery10 from "../images/gallery/10.jpeg";
+import gallery11 from "../images/gallery/11.jpeg";
+import gallery12 from "../images/gallery/12.jpeg";
+import gallery13 from "../images/gallery/13.jpeg";
+import gallery14 from "../images/gallery/14.jpeg";
+import gallery15 from "../images/gallery/15.jpeg";
+import gallery16 from "../images/gallery/16.jpeg";
+import gallery17 from "../images/gallery/17.jpeg";
+import gallery18 from "../images/gallery/18.jpeg";
+import gallery19 from "../images/gallery/19.jpeg";
+import gallery20 from "../images/gallery/20.jpeg";
+import gallery21 from "../images/gallery/21.jpeg";
+import gallery22 from "../images/gallery/22.jpeg";
+import gallery23 from "../images/gallery/23.jpeg";
+import gallery24 from "../images/gallery/24.jpeg";
+
+const galleryImages = [gallery1, gallery2, gallery3, gallery4, gallery5, gallery6, gallery7, gallery8, gallery9, gallery10, gallery11, gallery12, gallery13, gallery14, gallery15, gallery16, gallery17, gallery18,
+gallery19, gallery20, gallery21, gallery22, gallery23, gallery24]
 ---
 
 
@@ -9,31 +36,69 @@ import PoolPicture from "../images/picture2.png";
 <section class="mt-28 container mx-auto px-8">
     <div class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4 gap-20 sm:gap-52 mt-20" id="card-1">
         <div class="md:w-1/2 relative">
-            <h4 class="text-xl sm:text-3xl"></h4>
+            <h4 class="text-xl sm:text-3xl" id="card1-title"></h4>
             <hr class="absolute w-full sm:w-180 mt-8">
-            <p class="text-lg mt-8"></p>
+            <p class="text-lg mt-8" id="card1-text"></p>
         </div>
         <div class="md:w-1/3 relative">
             <Image src={ChairPicture} alt="Imagen" class="w-full" />
-            <div class="absolute bottom-0 sm:-bottom-4 left-0 sm:-left-10 p-4 z-10" id="bottom-square-right">
-                <p class="text-lg"></p>
-            </div>
+            <a href="/about"<div class="absolute bottom-0 sm:-bottom-4 left-0 sm:-left-10 p-4 z-10" id="bottom-square-right"><p class="text-lg" id="card1-sub"></p></div></a>
         </div>
     </div>
     <div class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4 gap-20 sm:gap-52 mt-20" id="card-2">
         <div class="md:w-1/3 relative z-10">
             <Image src={PoolPicture} alt="Imagen" class="w-full" />
-            <div class="absolute bottom-0 sm:-bottom-4 right-0 sm:-right-10 p-4 z-10" id="bottom-square-left">
-                <p class="text-lg"></p>
+            <div class="absolute bottom-0 sm:-bottom-4 right-0 sm:-right-10 p-4 z-10" id="bottom-square-left" onclick="openModal('modelConfirm')">
+                <p class="text-lg" id="card2-sub"></p>
             </div>
         </div>
         <div class="md:w-1/2 relative">
-            <h4 class="text-xl sm:text-3xl"></h4>
+            <h4 class="text-xl sm:text-3xl" id="card2-title"></h4>
             <hr class="absolute w-full sm:w-180 mt-8 right-0">
-            <p class="text-lg mt-8" id="body-2"></p>
+            <p class="text-lg mt-8" id="card2-text"></p>
         </div>
     </div>
 </section>
+
+<div id="modelConfirm" class="fixed hidden z-50 inset-0 bg-gray-900 bg-opacity-60 overflow-y-auto h-full w-full px-4">
+    <div class="flex justify-center items-center w-full h-full">
+        <button id="closeModelButton" class="absolute top-4 right-4 bg-gray-800 hover:bg-gray-700 text-white rounded-full p-2 focus:outline-none">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+        <div class="relative">
+            <div class="carousel max-w-xl w-full md:w-1/3 flex">
+                {galleryImages.map((data) => (
+                <div class="carousel-item">
+                    <Image src={data} alt="Carousel image" class="object-contain h-full max-h-3/4 w-full" />
+                </div>
+                ))}
+            </div>
+
+            <div class="absolute inset-y-0 left-0 flex items-center justify-start pl-4">
+                <button class="carousel-control-prev bg-gray-800 hover:bg-gray-700 text-white rounded-full p-2 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                </button>
+            </div>
+            <div class="absolute inset-y-0 right-0 flex items-center justify-end pr-4">
+                <button class="carousel-control-next bg-gray-800 hover:bg-gray-700 text-white rounded-full p-2 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+  
+
+  
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -41,20 +106,20 @@ import PoolPicture from "../images/picture2.png";
 
         const translations: { [key: string]: { [key: string]: string } } = {
             es: {
-                title1: 'En La Villa en Cuyotlán, nos esforzamos por proporcionar una experiencia completa y única para nuestros huéspedes.',
-                body1: 'Ya sea que estés buscando una escapada romántica, un retiro tranquilo o simplemente un lugar para relajarte y disfrutar, nuestras habitaciones están diseñadas para proporcionarte la experiencia que estás buscando en La Villa en Cuyotlán. ¡Esperamos que las encuentres el refugio perfecto para tus vacaciones!',
+                title1: 'En La Villa en Cuyutlán, nos esforzamos por proporcionar una experiencia completa y única para nuestros huéspedes.',
+                body1: 'Ya sea que estés buscando una escapada romántica, un retiro tranquilo o simplemente un lugar para relajarte y disfrutar, nuestras habitaciones están diseñadas para proporcionarte la experiencia que estás buscando en La Villa en Cuyutlán. ¡Esperamos que las encuentres el refugio perfecto para tus vacaciones!',
                 more: 'MÁS',
                 gallery: 'GALERÍA',
                 title2: 'EL MEJOR AMBIENTE',
-                body2: 'Para preservar la serenidad y la atmósfera relajada que caracteriza a La Villa en Cuyotlán, damos la bienvenida a los huéspedes adultos que buscan disfrutar de momentos de paz y romance. Agradecemos tu comprensión de que, para mantener este ambiente, no permitimos niños en nuestras instalaciones. "Te invitamos a sumergirte en la experiencia única que ofrecemos, diseñada especialmente para parejas y adultos que buscan una escapada tranquila junto al mar." Admitimos mascotas para que puedas disfrutar de unas vacaciones completas con toda tu familia.'
+                body2: 'Para preservar la serenidad y la atmósfera relajada que caracteriza a La Villa en Cuyutlán, damos la bienvenida a los huéspedes adultos que buscan disfrutar de momentos de paz y romance. Agradecemos tu comprensión de que, para mantener este ambiente, no permitimos niños en nuestras instalaciones. "Te invitamos a sumergirte en la experiencia única que ofrecemos, diseñada especialmente para parejas y adultos que buscan una escapada tranquila junto al mar." Admitimos mascotas para que puedas disfrutar de unas vacaciones completas con toda tu familia.'
             },
             en: {
-                title1: 'At La Villa in Cuyotlán, we strive to provide a complete and unique experience for our guests.',
-                body1: 'Whether you are looking for a romantic getaway, a quiet retreat, or simply a place to unwind and enjoy, our rooms are designed to provide the experience you are looking for at La Villa en Cuyotlán. We hope you find them the perfect refuge for your vacation!',
+                title1: 'At La Villa in Cuyutlán, we strive to provide a complete and unique experience for our guests.',
+                body1: 'Whether you are looking for a romantic getaway, a quiet retreat, or simply a place to unwind and enjoy, our rooms are designed to provide the experience you are looking for at La Villa en Cuyutlán. We hope you find them the perfect refuge for your vacation!',
                 more: 'MORE',
                 gallery: 'GALLERY',
                 title2: 'THE BEST ENVIRONMENT',
-                body2: 'To preserve the serenity and relaxed atmosphere that characterizes La Villa en Cuyotlán, we welcome adult guests looking to enjoy moments of peace and romance. We appreciate your understanding that, in order to maintain this environment, we do not allow children in our facilities. “We invite you to immerse yourself in the unique experience we offer, designed especially for couples and adults seeking a peaceful seaside escape.” Pet Friendly: We accept pets so you can enjoy a complete vacation with your whole family.'
+                body2: 'To preserve the serenity and relaxed atmosphere that characterizes La Villa en Cuyutlán, we welcome adult guests looking to enjoy moments of peace and romance. We appreciate your understanding that, in order to maintain this environment, we do not allow children in our facilities. “We invite you to immerse yourself in the unique experience we offer, designed especially for couples and adults seeking a peaceful seaside escape.” Pet Friendly: We accept pets so you can enjoy a complete vacation with your whole family.'
             }
         };
 
@@ -63,8 +128,92 @@ import PoolPicture from "../images/picture2.png";
         document.querySelector('#bottom-square-right p')!.textContent = translations[lang].more;
 
         document.querySelector('#card-2 h4')!.textContent = translations[lang].title2;
-        document.querySelector('#body-2')!.textContent = translations[lang].body2;
+        document.querySelector('#card2-text')!.textContent = translations[lang].body2;
         document.querySelector('#card-2 #bottom-square-left p')!.textContent = translations[lang].gallery;
+    });
+
+    document.addEventListener('scroll', () => {
+        const card1Title:Element = (document.querySelector('#card1-title') as Element);
+        const card1Text:Element = (document.querySelector('#card1-text') as Element);
+        const card1Sub:Element = (document.querySelector('#card1-sub') as Element);
+
+        const card2Title:Element = (document.querySelector('#card2-title') as Element);
+        const card2Text:Element = (document.querySelector('#card2-text') as Element);
+        const card2Sub:Element = (document.querySelector('#card2-sub') as Element);
+
+        if (isInViewport((card1Title)) && !(card1Title as Element).classList.contains('show')) {
+            (card1Title as Element).classList.add('show');
+            (card1Text as Element).classList.add('show');
+            (card1Sub as Element).classList.add('show');
+        }
+        if (isInViewport((card2Title)) && !(card2Title as Element).classList.contains('show')) {
+            (card2Title as Element).classList.add('show');
+            (card2Text as Element).classList.add('show');
+            (card2Sub as Element).classList.add('show');
+        }
+    });
+
+    function isInViewport(element:Element) {
+        const rect = element.getBoundingClientRect();
+        return (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+        );
+    }
+
+    declare global {
+        interface Window {
+            openModal(modalId: string): void;
+        }
+        interface Window {
+            closeModal(modalId: string): void;
+        }
+    }
+
+    window.openModal = function(modalId: string) {
+        (document.getElementById(modalId) as HTMLElement).style.display = 'block'
+        document.getElementsByTagName('body')[0].classList.add('overflow-y-hidden', 'z-[90]')
+    }
+
+    window.closeModal = function(modalId: string) {
+        (document.getElementById(modalId) as HTMLElement).style.display = 'none'
+        document.getElementsByTagName('body')[0].classList.remove('overflow-y-hidden')
+    }
+
+    document.onkeydown = function(event) {
+        event = event || window.event;
+        if (event.keyCode === 27) {
+            document.getElementsByTagName('body')[0].classList.remove('overflow-y-hidden')
+            let modals = document.getElementsByClassName('modal');
+            Array.prototype.slice.call(modals).forEach(i => {
+                i.style.display = 'none'
+            })
+        }
+    };
+
+    const carousel = (document.querySelector('.carousel') as HTMLElement);
+    const prevButton = (document.querySelector('.carousel-control-prev') as Element);
+    const nextButton = (document.querySelector('.carousel-control-next') as Element);
+    const closeModelButton = (document.getElementById('closeModelButton') as Element);
+
+    prevButton.addEventListener('click', () => {
+        carousel.scrollBy({
+            left: -carousel.offsetWidth,
+            behavior: 'smooth'
+        });
+    });
+
+    nextButton.addEventListener('click', () => {
+        carousel.scrollBy({
+            left: carousel.offsetWidth,
+            behavior: 'smooth'
+        });
+    });
+
+    closeModelButton.addEventListener('click', () => {
+        window.closeModal('modelConfirm');
     });
 </script>
 
@@ -95,5 +244,17 @@ import PoolPicture from "../images/picture2.png";
     }
     #bottom-square-left{
         background-color: #123940;
+    }
+    .carousel {
+        max-width: 70%;
+        margin: 0 auto;
+        overflow-x: scroll;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+    }
+    .carousel-item {
+        flex: 0 0 100%;
+        scroll-snap-align: start;
     }
 </style>

@@ -24,36 +24,67 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-    const lang = document.cookie.split('; ').find(row => row.startsWith('lang'))!.split('=')[1];
+        const lang = document.cookie.split('; ').find(row => row.startsWith('lang'))!.split('=')[1];
 
-    const translations: { [key: string]: { [key: string]: string } } = {
-        es: {
-            unforgettableWeddings: 'Bodas Inolvidables',
-            unforgettableWeddingsBody: 'Celebra tu día especial en un entorno idílico con nuestros servicios especializados para bodas.',
-            privateBeachClub: 'Club de Playa Privado',
-            privateBeachClubBody: 'Disfruta de nuestro club de playa exclusivo con acceso privado para los huéspedes.',
-            luxuryAccommodation: 'Alojamiento de Lujo',
-            luxuryAccommodationBody: '6 habitaciones diseñadas para brindarte comodidad y elegancia durante tu estancia.'
-        },
-        en: {
-            unforgettableWeddings: 'Unforgettable Weddings',
-            unforgettableWeddingsBody: 'Celebrate your special day in an idyllic setting with our specialized wedding services.',
-            privateBeachClub: 'Private Beach Club',
-            privateBeachClubBody: 'Enjoy our exclusive club beach with private access for guests.',
-            luxuryAccommodation: 'Luxury Accommodation',
-            luxuryAccommodationBody: '6 rooms designed to provide you comfort and elegance during your stay.'
+        const translations: { [key: string]: { [key: string]: string } } = {
+            es: {
+                unforgettableWeddings: 'Bodas Inolvidables',
+                unforgettableWeddingsBody: 'Celebra tu día especial en un entorno idílico con nuestros servicios especializados para bodas.',
+                privateBeachClub: 'Club de Playa Privado',
+                privateBeachClubBody: 'Disfruta de nuestro club de playa exclusivo con acceso privado para los huéspedes.',
+                luxuryAccommodation: 'Alojamiento de Lujo',
+                luxuryAccommodationBody: '6 habitaciones diseñadas para brindarte comodidad y elegancia durante tu estancia.'
+            },
+            en: {
+                unforgettableWeddings: 'Unforgettable Weddings',
+                unforgettableWeddingsBody: 'Celebrate your special day in an idyllic setting with our specialized wedding services.',
+                privateBeachClub: 'Private Beach Club',
+                privateBeachClubBody: 'Enjoy our exclusive club beach with private access for guests.',
+                luxuryAccommodation: 'Luxury Accommodation',
+                luxuryAccommodationBody: '6 rooms designed to provide you comfort and elegance during your stay.'
+            }
+        };
+
+        document.querySelector('#title1')!.textContent = translations[lang].unforgettableWeddings;
+        document.querySelector('#body1')!.textContent = translations[lang].unforgettableWeddingsBody;
+
+        document.querySelector('#title2')!.textContent = translations[lang].privateBeachClub;
+        document.querySelector('#body2')!.textContent = translations[lang].privateBeachClubBody;
+
+        document.querySelector('#title3')!.textContent = translations[lang].luxuryAccommodation;
+        document.querySelector('#body3')!.textContent = translations[lang].luxuryAccommodationBody;
+    });
+
+    document.addEventListener('scroll', () => {
+        const title1:Element = (document.querySelector('#title1') as Element);
+        const body1:Element = (document.querySelector('#body1') as Element);
+
+        const title2:Element = (document.querySelector('#title2') as Element);
+        const body2:Element = (document.querySelector('#body2') as Element);
+
+        const title3:Element = (document.querySelector('#title3') as Element);
+        const body3:Element = (document.querySelector('#body3') as Element);
+        if (isInViewport((title1)) && !(title1 as Element).classList.contains('show')) {
+            (title1 as Element).classList.add('show');
+            (body1 as Element).classList.add('show');
+
+            (title2 as Element).classList.add('show');
+            (body2 as Element).classList.add('show');
+
+            (title3 as Element).classList.add('show');
+            (body3 as Element).classList.add('show');
         }
-    };
+    });
 
-    document.querySelector('#title1')!.textContent = translations[lang].unforgettableWeddings;
-    document.querySelector('#body1')!.textContent = translations[lang].unforgettableWeddingsBody;
-
-    document.querySelector('#title2')!.textContent = translations[lang].privateBeachClub;
-    document.querySelector('#body2')!.textContent = translations[lang].privateBeachClubBody;
-
-    document.querySelector('#title3')!.textContent = translations[lang].luxuryAccommodation;
-    document.querySelector('#body3')!.textContent = translations[lang].luxuryAccommodationBody;
-});
+    function isInViewport(element:Element) {
+        const rect = element.getBoundingClientRect();
+        return (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+        );
+    }
 
 </script>
 

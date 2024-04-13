@@ -11,9 +11,9 @@ interface Props {
 const { BackgroundUrl } = Astro.props;
 ---
 
-<div class="flex justify-end mx-auto w-full px-4 fixed z-[100]" x-data="{ open: false }">
+<div class="flex justify-end mx-auto w-full px-4 fixed z-[100] md:hidden" x-data="{ open: false }">
     <button class="w-14 h-14 relative focus:outline-none rounded" @click="open = !open" id="open-sidebar" style="background-color: #123940;">
-        <div class="block w-5 absolute left-6 top-1/2   transform  -translate-x-1/2 -translate-y-1/2">
+        <div class="w-5 absolute left-6 top-1/2   transform  -translate-x-1/2 -translate-y-1/2">
             <span  class="block absolute h-0.5 w-7 text-white bg-current transform transition duration-500 ease-in-out" :class="{'rotate-45': open,' -translate-y-1.5': !open }"></span>
             <span  class="block absolute  h-0.5 w-5 text-white bg-current   transform transition duration-500 ease-in-out" :class="{'opacity-0': open } "></span>
             <span  class="block absolute  h-0.5 w-7 text-white bg-current transform  transition duration-500 ease-in-out" :class="{'-rotate-45': open, ' translate-y-1.5': !open}"></span>
@@ -21,15 +21,15 @@ const { BackgroundUrl } = Astro.props;
     </button>
 </div>
 
-<div class="fixed bg-gray-800 text-white w-60 h-screen transition-transform transform -translate-x-full ease-in-out duration-300 z-[100]" id="sidebar" style="background-color: #123940;">
+<div class="fixed flex md:hidden bg-gray-800 text-white w-60 h-screen transition-transform transform -translate-x-full ease-in-out duration-300 z-[100]" id="sidebar" style="background-color: #123940;">
     <div class="p-4">
         <ul class="mt-4">
             <li class="mt-5"><a href="/" class="font-normal hover:font-bold">Home</a></li>
             <li class="mt-5"><a href="/about" class="font-normal hover:font-bold">About</a></li>
             <li class="mt-5"><a href="/rooms" class="font-normal hover:font-bold">Rooms</a></li>
             <li class="mt-5"><a href="https://wa.me/+5213141014478" target="_blank" class="font-normal hover:font-bold">Contact</a></li>
-            <li class="mt-5"><button change-lang-es><Image src={MX} alt="mx flag" class="h-7 w-7"></button></li>
-            <li class="mt-5"><button change-lang-en><Image src={US} alt="mx flag" class="h-7 w-7"></button></li>
+            <li class="mt-5"><button change-lang-es2><Image src={MX} alt="mx flag" class="h-7 w-7"></button></li>
+            <li class="mt-5"><button change-lang-en2><Image src={US} alt="mx flag" class="h-7 w-7"></button></li>
         </ul>
     </div>
 </div>
@@ -37,7 +37,9 @@ const { BackgroundUrl } = Astro.props;
 <header class="mt-4 ml-4 mr-4 flex flex-col justify-between" style={{backgroundImage: `url(${BackgroundUrl})`}}>
     <div class="flex justify-end">
         <div class="columns-1 sm:columns-2 w-full md:w-10/12 hidden md:flex items-center">
-            <Image src={Logo} id="header-bg" alt="La villa logo" class="p-4 opacity-90" loading="eager"/>
+            <div id="header-bg">
+                <Image src={Logo} id="header-bg-img" alt="La villa logo" class="p-4 opacity-90" loading="eager"/>
+            </div>
             <nav class="flex items-center w-full flex-col sm:flex-row py-4 justify-center gap-10">
                 <a href="/" class="font-normal hover:font-bold">Home</a>
                 <a href="/about" class="font-normal hover:font-bold">About</a>
@@ -55,7 +57,9 @@ const { BackgroundUrl } = Astro.props;
     document.addEventListener('DOMContentLoaded', () => {
         const lang = document.cookie.split('; ').find(row => row.startsWith('lang'))!.split('=')[1];
         const buttonEs = document.querySelector('[change-lang-es]');
+        const buttonEs2 = document.querySelector('[change-lang-es2]');
         const buttonEn = document.querySelector('[change-lang-en]');
+        const buttonEn2 = document.querySelector('[change-lang-en2]');
         const translations: { [key: string]: { [key: string]: string } } = {
             es: {
                 home: 'Inicio',
@@ -79,8 +83,10 @@ const { BackgroundUrl } = Astro.props;
 
         if (lang === 'es') {
             (buttonEs as HTMLInputElement).style.display = 'none';
+            (buttonEs2 as HTMLInputElement).style.display = 'none';
         } else {
             (buttonEn as HTMLInputElement).style.display = 'none';
+            (buttonEn2 as HTMLInputElement).style.display = 'none';
         }
 
         const path = window.location.pathname;
@@ -98,6 +104,9 @@ const { BackgroundUrl } = Astro.props;
                 link.classList.add('font-bold');
             }
         });
+
+        const header:Element = (document.querySelector('#header-bg-img') as Element);
+        (header as Element).classList.add('show');
     });
 
     const setCookie = (name:string, value:string, days:number) => {
@@ -115,7 +124,9 @@ const { BackgroundUrl } = Astro.props;
     }
 
     const buttonEs = document.querySelectorAll('[change-lang-es]');
+    const buttonEs2 = document.querySelectorAll('[change-lang-es2]');
     const buttonEn = document.querySelectorAll('[change-lang-en]');
+    const buttonEn2 = document.querySelectorAll('[change-lang-en2]');
 
     buttonEs.forEach((button) => {
         button.addEventListener('click', ()=>{
@@ -124,7 +135,21 @@ const { BackgroundUrl } = Astro.props;
             location.reload();
         });
     });
+    buttonEs2.forEach((button) => {
+        button.addEventListener('click', ()=>{
+            deleteCookie('lang');
+            setCookie('lang', 'es', 30);
+            location.reload();
+        });
+    });
     buttonEn.forEach((button) => {
+        button.addEventListener('click', ()=>{
+            deleteCookie('lang');
+            setCookie('lang', 'en', 30);
+            location.reload();
+        });
+    });
+    buttonEn2.forEach((button) => {
         button.addEventListener('click', ()=>{
             deleteCookie('lang');
             setCookie('lang', 'en', 30);
