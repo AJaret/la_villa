@@ -4,6 +4,7 @@ import MX from "../images/icons/mx.png";
 import Phone from "../images/icons/phone.svg";
 import US from "../images/icons/us.png";
 import Logo from "../images/logos/la_villa_logo.svg";
+import LogoWhite from "../images/logos/scroll-icon.svg";
 ---
 
 <div class="flex md:hidden justify-end mx-auto w-full px-4 fixed z-[50]" x-data="{ open: false }">
@@ -36,12 +37,28 @@ import Logo from "../images/logos/la_villa_logo.svg";
                 <Image src={Logo} id="header-bg-img" alt="La villa logo" class="p-4 opacity-90" loading="eager"/>
             </div>
             <nav class="flex items-center w-full flex-col sm:flex-row py-4 justify-center gap-10">
-                <a href="/" class="font-normal hover:font-bold">Home</a>
-                <a href="/about" class="font-normal hover:font-bold">About</a>
-                <a href="/rooms" class="font-normal hover:font-bold">Rooms</a>
-                <a href="https://wa.me/+5213141014478" target="_blank" class="font-normal hover:font-bold">Contact</a>
+                <a href="/" class="font-normal hover:font-bold normal-a">Home</a>
+                <a href="/about" class="font-normal hover:font-bold normal-a">About</a>
+                <a href="/rooms" class="font-normal hover:font-bold normal-a">Rooms</a>
+                <a href="https://wa.me/+5213141014478" target="_blank" class="font-normal hover:font-bold normal-a">Contact</a>
                 <button change-lang-es><Image src={MX} alt="mx flag" class="h-7 w-7"></button>
                 <button change-lang-en><Image src={US} alt="mx flag" class="h-7 w-7"></button>
+            </nav>
+        </div>
+    </div>
+    
+    <div class="fixed top-0 right-0 z-50 w-full" id="scroll-nav">
+        <div class="hidden md:flex columns-2 w-full">
+            <nav class="flex items-center w-full flex-row justify-around gap-10">
+                <Image src={LogoWhite} id="header-bg-img" alt="La villa logo" class="p-2 opacity-90" loading="eager"/>
+                <div class="flex justify-center gap-14">
+                    <a href="/" class="font-normal hover:font-bold scroll-a">Home</a>
+                    <a href="/about" class="font-normal hover:font-bold scroll-a">About</a>
+                    <a href="/rooms" class="font-normal hover:font-bold scroll-a">Rooms</a>
+                    <a href="https://wa.me/+5213141014478" target="_blank" class="font-normal hover:font-bold scroll-a">Contact</a>
+                    <button change-lang-es3><Image src={MX} alt="mx flag" class="h-7 w-7"></button>
+                    <button change-lang-en3><Image src={US} alt="mx flag" class="h-7 w-7"></button>
+                </div>
             </nav>
         </div>
     </div>
@@ -54,13 +71,17 @@ import Logo from "../images/logos/la_villa_logo.svg";
 
     <div class="flex justify-end">
         <div class="columns-2 flex items-center w-full sm:w-4/6 md:w-2/6 p-4" id="reservation">
-            <Image src={Phone} alt="Phone Icon" id="phone-img" class="mr-3 w-1/3" loading="eager"/>
+            <a href="https://wa.me/+5213141014478" target="_blank" class="mr-3 w-1/3"><Image src={Phone} alt="Phone Icon" id="phone-img" loading="eager"/></a>
             <p id="reservation_text">Make your reservation easily through our website and secure your place in paradise.</p>
         </div>
     </div>
 </header>
 <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
 <script>
+    const headerElement = document.querySelector('#scroll-nav') as HTMLElement;
+    let isHeaderVisible = true;
+    let throttleTimeout: number | undefined;
+
     document.addEventListener('DOMContentLoaded', () => {
         const header:Element = (document.querySelector('#header-bg-img') as Element);
         const headerPhone:Element = (document.querySelector('#phone-img') as Element);
@@ -72,8 +93,10 @@ import Logo from "../images/logos/la_villa_logo.svg";
         const lang = document.cookie.split('; ').find(row => row.startsWith('lang'))!.split('=')[1];
         const buttonEs = document.querySelector('[change-lang-es]');
         const buttonEs2 = document.querySelector('[change-lang-es2]');
+        const buttonEs3 = document.querySelector('[change-lang-es3]');
         const buttonEn = document.querySelector('[change-lang-en]');
         const buttonEn2 = document.querySelector('[change-lang-en2]');
+        const buttonEn3 = document.querySelector('[change-lang-en3]');
         const translations: { [key: string]: { [key: string]: string } } = {
             es: {
                 home: 'Inicio',
@@ -93,7 +116,11 @@ import Logo from "../images/logos/la_villa_logo.svg";
             }
         };
 
-        document.querySelectorAll('nav a').forEach((link, index) => {
+        document.querySelectorAll('nav .normal-a').forEach((link, index) => {
+            link.textContent = Object.values(translations[lang])[index];
+        });
+        
+        document.querySelectorAll('nav .scroll-a').forEach((link, index) => {
             link.textContent = Object.values(translations[lang])[index];
         });
 
@@ -102,9 +129,11 @@ import Logo from "../images/logos/la_villa_logo.svg";
         if (lang === 'es') {
             (buttonEs as HTMLInputElement).style.display = 'none';
             (buttonEs2 as HTMLInputElement).style.display = 'none';
+            (buttonEs3 as HTMLInputElement).style.display = 'none';
         } else {
             (buttonEn as HTMLInputElement).style.display = 'none';
             (buttonEn2 as HTMLInputElement).style.display = 'none';
+            (buttonEn3 as HTMLInputElement).style.display = 'none';
         }
 
         const path = window.location.pathname;
@@ -122,6 +151,19 @@ import Logo from "../images/logos/la_villa_logo.svg";
                 link.classList.add('font-bold');
             }
         });
+
+        const scrollPosition = window.scrollY;
+        const headerHeight = headerElement.offsetHeight * 2;
+
+        if (scrollPosition > headerHeight) {
+            if(headerElement.classList.contains('hidden')){
+                headerElement.classList.remove('hidden');
+            }
+        } else {
+            if(!headerElement.classList.contains('hidden')){
+                headerElement.classList.add('hidden');
+            }
+        }
     });
 
     const setCookie = (name:string, value:string, days:number) => {
@@ -142,6 +184,8 @@ import Logo from "../images/logos/la_villa_logo.svg";
     const buttonEs2 = document.querySelectorAll('[change-lang-es2]');
     const buttonEn = document.querySelectorAll('[change-lang-en]');
     const buttonEn2 = document.querySelectorAll('[change-lang-en2]');
+    const buttonEn3 = document.querySelectorAll('[change-lang-en3]');
+    const buttonEs3 = document.querySelectorAll('[change-lang-es3]');
 
     buttonEs.forEach((button) => {
         button.addEventListener('click', ()=>{
@@ -171,6 +215,20 @@ import Logo from "../images/logos/la_villa_logo.svg";
             location.reload();
         });
     });
+    buttonEs3.forEach((button) => {
+        button.addEventListener('click', ()=>{
+            deleteCookie('lang');
+            setCookie('lang', 'en', 30);
+            location.reload();
+        });
+    });
+    buttonEn3.forEach((button) => {
+        button.addEventListener('click', ()=>{
+            deleteCookie('lang');
+            setCookie('lang', 'en', 30);
+            location.reload();
+        });
+    });
 
     const sidebar = document.getElementById('sidebar');
     const openSidebarButton = document.getElementById('open-sidebar');
@@ -182,6 +240,26 @@ import Logo from "../images/logos/la_villa_logo.svg";
         }else{
             sidebar!.classList.add('-translate-x-full');
         }
+    });
+
+    window.addEventListener('scroll', () => {
+        if (!isHeaderVisible) return;
+
+        const scrollPosition = window.scrollY;
+
+        clearTimeout(throttleTimeout);
+
+        throttleTimeout = setTimeout(() => {
+            if (scrollPosition > 180) {
+                if(headerElement.classList.contains('hidden')){
+                    headerElement.classList.remove('hidden');
+                }
+            } else {
+                if(!headerElement.classList.contains('hidden')){
+                    headerElement.classList.add('hidden');
+                }
+            }
+        }, 10);
     });
 </script>
 

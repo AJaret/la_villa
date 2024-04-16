@@ -3,6 +3,7 @@ import { Image } from "astro:assets";
 import Logo from "../images/logos/la_villa_logo.svg";
 import US from "../images/icons/us.png";
 import MX from "../images/icons/mx.png";
+import LogoWhite from "../images/logos/scroll-icon.svg";
 
 interface Props {
 	BackgroundUrl: string;
@@ -36,17 +37,33 @@ const { BackgroundUrl } = Astro.props;
 
 <header class="mt-4 ml-4 mr-4 flex flex-col justify-between" style={{backgroundImage: `url(${BackgroundUrl})`}}>
     <div class="flex justify-end">
-        <div class="columns-1 sm:columns-2 w-full md:w-10/12 hidden md:flex items-center">
+        <div class="hidden md:flex columns-1 sm:columns-2 w-full md:w-10/12 items-center">
             <div id="header-bg">
                 <Image src={Logo} id="header-bg-img" alt="La villa logo" class="p-4 opacity-90" loading="eager"/>
             </div>
             <nav class="flex items-center w-full flex-col sm:flex-row py-4 justify-center gap-10">
-                <a href="/" class="font-normal hover:font-bold">Home</a>
-                <a href="/about" class="font-normal hover:font-bold">About</a>
-                <a href="/rooms" class="font-normal hover:font-bold">Rooms</a>
-                <a href="https://wa.me/+5213141014478" target="_blank" class="font-normal hover:font-bold">Contact</a>
+                <a href="/" class="font-normal hover:font-bold normal-a">Home</a>
+                <a href="/about" class="font-normal hover:font-bold normal-a">About</a>
+                <a href="/rooms" class="font-normal hover:font-bold normal-a">Rooms</a>
+                <a href="https://wa.me/+5213141014478" target="_blank" class="font-normal hover:font-bold normal-a">Contact</a>
                 <button change-lang-es><Image src={MX} alt="mx flag" class="h-7 w-7"></button>
                 <button change-lang-en><Image src={US} alt="mx flag" class="h-7 w-7"></button>
+            </nav>
+        </div>
+    </div>
+    
+    <div class="fixed top-0 right-0 z-50 w-full" id="scroll-nav">
+        <div class="hidden md:flex columns-2 w-full">
+            <nav class="flex items-center w-full flex-row justify-around gap-10">
+                <Image src={LogoWhite} id="header-bg-img" alt="La villa logo" class="p-2 opacity-90" loading="eager"/>
+                <div class="flex justify-center gap-14">
+                    <a href="/" class="font-normal hover:font-bold scroll-a">Home</a>
+                    <a href="/about" class="font-normal hover:font-bold scroll-a">About</a>
+                    <a href="/rooms" class="font-normal hover:font-bold scroll-a">Rooms</a>
+                    <a href="https://wa.me/+5213141014478" target="_blank" class="font-normal hover:font-bold scroll-a">Contact</a>
+                    <button change-lang-es3><Image src={MX} alt="mx flag" class="h-7 w-7"></button>
+                    <button change-lang-en3><Image src={US} alt="mx flag" class="h-7 w-7"></button>
+                </div>
             </nav>
         </div>
     </div>
@@ -54,12 +71,18 @@ const { BackgroundUrl } = Astro.props;
 
 <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
 <script>
+    const headerElement = document.querySelector('#scroll-nav') as HTMLElement;
+    let isHeaderVisible = true;
+    let throttleTimeout: number | undefined;
+
     document.addEventListener('DOMContentLoaded', () => {
         const lang = document.cookie.split('; ').find(row => row.startsWith('lang'))!.split('=')[1];
         const buttonEs = document.querySelector('[change-lang-es]');
         const buttonEs2 = document.querySelector('[change-lang-es2]');
+        const buttonEs3 = document.querySelector('[change-lang-es3]');
         const buttonEn = document.querySelector('[change-lang-en]');
         const buttonEn2 = document.querySelector('[change-lang-en2]');
+        const buttonEn3 = document.querySelector('[change-lang-en3]');
         const translations: { [key: string]: { [key: string]: string } } = {
             es: {
                 home: 'Inicio',
@@ -77,16 +100,22 @@ const { BackgroundUrl } = Astro.props;
             }
         };
 
-        document.querySelectorAll('nav a').forEach((link, index) => {
+        document.querySelectorAll('nav .normal-a').forEach((link, index) => {
+            link.textContent = Object.values(translations[lang])[index];
+        });
+        
+        document.querySelectorAll('nav .scroll-a').forEach((link, index) => {
             link.textContent = Object.values(translations[lang])[index];
         });
 
         if (lang === 'es') {
             (buttonEs as HTMLInputElement).style.display = 'none';
             (buttonEs2 as HTMLInputElement).style.display = 'none';
+            (buttonEs3 as HTMLInputElement).style.display = 'none';
         } else {
             (buttonEn as HTMLInputElement).style.display = 'none';
             (buttonEn2 as HTMLInputElement).style.display = 'none';
+            (buttonEn3 as HTMLInputElement).style.display = 'none';
         }
 
         const path = window.location.pathname;
@@ -107,6 +136,19 @@ const { BackgroundUrl } = Astro.props;
 
         const header:Element = (document.querySelector('#header-bg-img') as Element);
         (header as Element).classList.add('show');
+
+        const scrollPosition = window.scrollY;
+        const headerHeight = headerElement.offsetHeight * 2;
+
+        if (scrollPosition > headerHeight) {
+            if(headerElement.classList.contains('hidden')){
+                headerElement.classList.remove('hidden');
+            }
+        } else {
+            if(!headerElement.classList.contains('hidden')){
+                headerElement.classList.add('hidden');
+            }
+        }
     });
 
     const setCookie = (name:string, value:string, days:number) => {
@@ -127,6 +169,8 @@ const { BackgroundUrl } = Astro.props;
     const buttonEs2 = document.querySelectorAll('[change-lang-es2]');
     const buttonEn = document.querySelectorAll('[change-lang-en]');
     const buttonEn2 = document.querySelectorAll('[change-lang-en2]');
+    const buttonEn3 = document.querySelectorAll('[change-lang-en3]');
+    const buttonEs3 = document.querySelectorAll('[change-lang-es3]');
 
     buttonEs.forEach((button) => {
         button.addEventListener('click', ()=>{
@@ -156,6 +200,20 @@ const { BackgroundUrl } = Astro.props;
             location.reload();
         });
     });
+    buttonEs3.forEach((button) => {
+        button.addEventListener('click', ()=>{
+            deleteCookie('lang');
+            setCookie('lang', 'en', 30);
+            location.reload();
+        });
+    });
+    buttonEn3.forEach((button) => {
+        button.addEventListener('click', ()=>{
+            deleteCookie('lang');
+            setCookie('lang', 'en', 30);
+            location.reload();
+        });
+    });
 
     const sidebar = document.getElementById('sidebar');
     const openSidebarButton = document.getElementById('open-sidebar');
@@ -167,6 +225,26 @@ const { BackgroundUrl } = Astro.props;
         }else{
             sidebar!.classList.add('-translate-x-full');
         }
+    });
+
+    window.addEventListener('scroll', () => {
+        if (!isHeaderVisible) return;
+
+        const scrollPosition = window.scrollY;
+
+        clearTimeout(throttleTimeout);
+
+        throttleTimeout = setTimeout(() => {
+            if (scrollPosition > 180) {
+                if(headerElement.classList.contains('hidden')){
+                    headerElement.classList.remove('hidden');
+                }
+            } else {
+                if(!headerElement.classList.contains('hidden')){
+                    headerElement.classList.add('hidden');
+                }
+            }
+        }, 10);
     });
 </script>
 
